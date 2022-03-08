@@ -1,0 +1,48 @@
+{
+  "name": "neipclova-web",
+  "version": "1.0.0",
+  "private": true,
+  "author": "neipclova",
+  "license": "MIT",
+  "main": "index.js",
+  "scripts": {
+    "precommit": "lint-staged && git add -A",
+    "dev": "next"
+  },
+  "dependencies": {
+    "antd": "4.18.9",
+    "next": "12.1.0",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "react-slick": "0.28.1",
+    "styled-components": "^5.3.3"
+  },
+  "lint-staged": {
+    "*.@(js|jsx|ts|tsx)": [
+      "yarn lint",
+      "yarn format"
+    ]
+  },
+  "devDependencies": {
+    "@types/eslint": "8.4.1",
+    "@types/eslint-plugin-prettier": "^3.1.0",
+    "@types/jest": "27.4.1",
+    "@types/node": "17.0.21",
+    "@types/prettier": "2.4.4",
+    "@types/react": "17.0.39",
+    "@types/react-dom": "17.0.13",
+    "@types/styled-components": "5.1.24",
+    "@typescript-eslint/eslint-plugin": "5.14.0",
+    "@typescript-eslint/parser": "5.14.0",
+    "eslint": "7.31.0",
+    "eslint-config-prettier": "8.5.0",
+    "eslint-import-resolver-typescript": "2.5.0",
+    "eslint-plugin-import": "2.24.2",
+    "eslint-plugin-prettier": "3.4.0",
+    "eslint-plugin-react": "7.29.3",
+    "eslint-plugin-unused-imports": "1.1.2",
+    "lint-staged": "12.3.5",
+    "prettier": "2.5.1",
+    "typescript": "4.6.2"
+  }
+}
