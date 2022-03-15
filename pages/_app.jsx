@@ -7,7 +7,7 @@ const NeipClova = ({ Component }) => {
   return (
     <>
       <Head>
-        <title>네잎클로바</title>
+        <title>당신의 MBTI는 무엇입니까?</title>
       </Head>
       <Component />
     </>

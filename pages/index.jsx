@@ -3,15 +3,14 @@ import Head from 'next/head';
 import { Button } from 'antd';
 import Link from 'next/link';
 
+import { MainpageScreen } from '../screens';
+
+
+
 const Home = () => {
   return (
-    <>
-      <Link href="/survey">
-        <a>
-          <Button type="primary">설문 시작</Button>
-        </a>
-      </Link>
-    </>
+    <MainpageScreen />
+
   );
 };
 
