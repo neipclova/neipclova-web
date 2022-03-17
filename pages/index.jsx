@@ -11,6 +11,11 @@ const Home = () => {
           <Button type="primary">설문 시작</Button>
         </a>
       </Link>
+      <Link href="/survey-result">
+        <a>
+          <Button type="primary">결과페이지</Button>
+        </a>
+      </Link>
     </>
   );
 };
