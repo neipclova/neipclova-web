@@ -1,17 +1,14 @@
 import React from 'react';
-import Head from 'next/head';
-import { Button } from 'antd';
-import Link from 'next/link';
 
-import { MainpageScreen } from '../screens';
+import { SurveyHomeScreen } from '../screens';
 
 
 
-const Home = () => {
+const Neipclova = () => {
   return (
-    <MainpageScreen />
+    <SurveyHomeScreen />
 
   );
 };
 
-export default Home;
+export default Neipclova;

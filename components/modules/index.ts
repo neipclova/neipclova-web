@@ -1,2 +1,2 @@
 export * from './survey-processing';
-export * from './mainpage';
+export * from './survey-home';

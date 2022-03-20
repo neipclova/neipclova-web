@@ -2,9 +2,9 @@ import {FC, useState} from 'react';
 import { Button } from 'antd';
 import Link from 'next/link';
 
-type IMainpageStartButtonProp = {};
+type ISurveyHomeDetailStartButtonProp = {};
 
-export const MainpageStartButton: FC<IMainpageStartButtonProp> = () => {
+export const SurveyHomeDetailStartButton: FC<ISurveyHomeDetailStartButtonProp> = () => {
   return (
     <Link href="/survey">
       <a>

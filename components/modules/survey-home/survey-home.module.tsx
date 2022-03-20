@@ -1,14 +1,14 @@
 import { Space } from 'antd';
 import { FC } from 'react';
-import { MainpageURLButton, MainpageStartButton, MainpageHeader } from './components';
+import { SurveyHomeDetailURLButton, SurveyHomeDetailStartButton, SurveyHomeDetailStatistics, SurveyHomeTitle } from './components';
 
-type IMainpageModuleProp = {};
+type ISurveyHomeModuleProp = {};
 
-export const MainpageModule: FC<IMainpageModuleProp> = () => {
+export const SurveyHomeModule: FC<ISurveyHomeModuleProp> = () => {
     return (
         <div style={{ display: 'flex', padding: 10, justifyContent: 'center' }}>
             <Space direction="vertical">
-                <MainpageHeader />
+                <SurveyHomeTitle />
                 <br />
                 <br />
                 <body>
@@ -16,13 +16,14 @@ export const MainpageModule: FC<IMainpageModuleProp> = () => {
                 <br />
                     <div style={{ display: 'flex', padding: 70, justifyContent: 'center' }}>
                     <Space direction="vertical">
-                        <MainpageStartButton />
+                        <SurveyHomeDetailStartButton />
                         <br />
                         <br />
-                        <MainpageURLButton />
+                        <SurveyHomeDetailURLButton />
                     </Space>
                     </div>
                 </body>
+                <SurveyHomeDetailStatistics />
             </Space>
         </div>
     );

@@ -4,9 +4,9 @@ import 'antd/dist/antd.css';
 import { Typography } from 'antd';
 import { FC } from 'react';
 
-type MainpageHeaderProp = {};
+type ISurveyHomeTitleProp = {};
 
-export const MainpageHeader: FC<MainpageHeaderProp> = () => {
+export const SurveyHomeTitle: FC<ISurveyHomeTitleProp> = () => {
     const { Title } = Typography;
     return (
         <>
@@ -16,3 +16,5 @@ export const MainpageHeader: FC<MainpageHeaderProp> = () => {
         </>
     );
 };
+
+export default SurveyHomeTitle;
