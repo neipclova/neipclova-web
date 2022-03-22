@@ -1,13 +1,13 @@
 import { NextPage } from 'next';
 import { SurveyResultModule } from '../../../components';
-import { ResultLayout } from '../../../components/layouts/survey-result';
+import { SurveyResultLayout } from '../../../components/layouts/survey-result';
 
-type IResultProcessingScreenProps = {};
+type ISurveyResultScreenProps = {};
 
-export const ResultProcessingScreen: NextPage<IResultProcessingScreenProps> = () => {
+export const SurveyResultScreen: NextPage<ISurveyResultScreenProps> = () => {
   return (
-    <ResultLayout>
+    <SurveyResultLayout>
       <SurveyResultModule />
-    </ResultLayout>
+    </SurveyResultLayout>
   );
 };

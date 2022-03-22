@@ -1,2 +1,2 @@
-export * from './result-explain';
-export * from './result-title'
+export * from './survey-result-explain';
+export * from './survey-result-title'

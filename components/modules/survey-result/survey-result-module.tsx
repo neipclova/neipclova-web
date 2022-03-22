@@ -8,8 +8,8 @@ export const SurveyResultModule: FC<ISurveyResultModuleProp> = () => {
   return (
     <div style={{ display: 'flex', padding: 20, justifyContent: 'center' }}>
       <Space direction="vertical">
+      <SurveyResultTitle />
         <SurveyResultExplain />
-        <SurveyResultTitle />
       </Space>
     </div>
   );

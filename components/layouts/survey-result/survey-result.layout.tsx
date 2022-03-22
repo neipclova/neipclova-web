@@ -1,11 +1,11 @@
 import { Layout } from 'antd';
 import { FC, ReactNode } from 'react';
 
-type IResultLayoutProps = {
+type ISurveyResultLayoutProps = {
   children: ReactNode;
 };
 
-export const ResultLayout: FC<IResultLayoutProps> = ({ children }) => {
+export const SurveyResultLayout: FC<ISurveyResultLayoutProps> = ({ children }) => {
   return (
     <Layout>
       <Layout.Header style={{ padding: 0, height: 'auto' }}></Layout.Header>
