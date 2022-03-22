@@ -1,1 +1,1 @@
-export * from './survey-home-title';
+export * from './survey-home-title.components';
