@@ -1,2 +1,2 @@
-export * from './result-processing-explain';
-export * from './result-processing-title'
+export * from './result-explain';
+export * from './result-title'

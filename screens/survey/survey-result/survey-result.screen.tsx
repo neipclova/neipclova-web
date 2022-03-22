@@ -1,6 +1,6 @@
 import { NextPage } from 'next';
 import { SurveyResultModule } from '../../../components';
-import { ResultLayout } from '../../../components/layouts/result';
+import { ResultLayout } from '../../../components/layouts/survey-result';
 
 type IResultProcessingScreenProps = {};
 

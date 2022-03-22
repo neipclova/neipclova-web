@@ -1,8 +1,8 @@
 import { Typography } from 'antd';
 import { FC } from 'react';
-type IResultProcessingExplainProp = {};
+type ISurveyResultExplainProp = {};
 
-export const ResultyProcessingExplain: FC<IResultProcessingExplainProp> = () => {
+export const SurveyResultExplain: FC<ISurveyResultExplainProp> = () => {
   return (
     <>
         <Typography>짱구!!!</Typography>
