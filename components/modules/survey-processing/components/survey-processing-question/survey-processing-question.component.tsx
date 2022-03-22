@@ -1,8 +1,16 @@
-import { Typography } from 'antd';
+import { Typography, Divider } from 'antd';
 import { FC } from 'react';
+
 
 type ISurveyProcessingQuestionProp = { data: string };
 
+const { Title } = Typography;
+
 export const SurveyProcessingQuestion: FC<ISurveyProcessingQuestionProp> = ({ data }) => {
-  return <Typography>오늘의 {data}는 무엇인가요?</Typography>;
+  return (
+  <>
+    <Title level={3} style={{textAlign:'center'}}>{data}</Title>
+
+  </>
+  );
 };
