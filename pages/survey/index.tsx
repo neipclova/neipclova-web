@@ -19,4 +19,4 @@ const SurveyProcessingPage = () => {
   );
 };
 
-export default SurveyProcessingScreen;
+export default SurveyProcessingPage;

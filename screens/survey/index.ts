@@ -1,2 +1,3 @@
-export * from "./processing/survey-processing.screen";
-export * from "./survey-result";
+export * from './survey-home';
+export * from './survey-processing';
+export * from './survey-result';
