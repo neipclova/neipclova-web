@@ -2,13 +2,8 @@ import React from 'react';
 
 import { SurveyHomeScreen } from '../screens';
 
-
-
 const Neipclova = () => {
-  return (
-    <SurveyHomeScreen />
-
-  );
+  return <SurveyHomeScreen />;
 };
 
 export default Neipclova;
