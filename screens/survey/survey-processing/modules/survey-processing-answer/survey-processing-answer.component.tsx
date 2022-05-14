@@ -1,10 +1,11 @@
 import { RadioChangeEvent, Row, Col, Button } from 'antd';
 import { FC, MouseEventHandler, useState } from 'react';
 import styled from 'styled-components';
+import * as data from './survey-processing-answer.data';
 
 type ISurveyProcessingAnswerComponentProp = {
-  data: string[];
-  align: string;
+  currentOrder: number;
+  setCurrentOrder: any;
 };
 
 const HoverButton = styled(Button)`
@@ -14,50 +15,47 @@ const HoverButton = styled(Button)`
 `;
 
 export const SurveyProcessingAnswerComponent: FC<ISurveyProcessingAnswerComponentProp> = ({
-  data,
-  align,
+  currentOrder,
+  setCurrentOrder,
 }) => {
   const [value, setValue] = useState(1);
+  const [type, setType] = useState('');
 
   const onChange = (e: RadioChangeEvent) => {
     console.log('radio checked', e.target.value);
     setValue(e.target.value);
   };
 
-  const handleClickButton = (item: string) => {
-    console.log('click button:', item);
+  const handleClickButton = (item: any) => {
+    setCurrentOrder(item.next_question_order);
   };
 
-  const arrangeItemByBox = data.map((item) => (
-    <Col key={item} span={12}>
-      <HoverButton
-        size="large"
-        style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: 100 }}
-        block
-        onClick={() => handleClickButton(item)}
-      >
-        {item}
-      </HoverButton>
-    </Col>
-  ));
-
-  const arrangeItemByRow = data.map((item) => (
-    <Row key={item} gutter={[16, 24]}>
-      <Button
-        key={item}
-        size="large"
-        shape="round"
-        style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%' }}
-        block
-        onClick={() => handleClickButton(item)}
-      >
-        {item}
-      </Button>
+  const arrangeItemByRow = (currentOrder: number) => (
+    <Row key={data.question_answer_data[currentOrder].length} gutter={[16, 24]}>
+      {data.question_answer_data[currentOrder].map((item) => {
+        return (
+          <Button
+            key={item.order}
+            size="large"
+            shape="round"
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              width: '100%',
+            }}
+            block
+            onClick={() => handleClickButton(item)}
+          >
+            {item.option}
+          </Button>
+        );
+      })}
     </Row>
-  ));
+  );
 
   return (
-    <>{align === 'box' ? <Row gutter={[8, 8]}>{arrangeItemByBox}</Row> : arrangeItemByRow}</>
+    <>{arrangeItemByRow(currentOrder)}</>
 
     // <Radio.Group onChange={onChange} value={value}>
     //   <Space direction="vertical">

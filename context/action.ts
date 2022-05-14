@@ -1,0 +1,2 @@
+export const CURRENT_QUESTION_ORDER = 'CURRENT_QUESTION_ORDER';
+export const USER_TYPE = 'USER_TYPE';

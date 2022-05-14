@@ -3,9 +3,11 @@ import { NextPage } from 'next';
 import { SurveyResultLayout } from '../../../components';
 import { SurveyResultExplainComponent, SurveyResultTitleComponent } from './components';
 
-type ISurveyResultScreenProps = {};
+type ISurveyResultScreenProps = {
+  result: string;
+};
 
-export const SurveyResultScreen: NextPage<ISurveyResultScreenProps> = () => {
+export const SurveyResultScreen: NextPage<ISurveyResultScreenProps> = ({ result }) => {
   return (
     <SurveyResultLayout>
       <div style={{ display: 'flex', padding: 20, justifyContent: 'center' }}>
