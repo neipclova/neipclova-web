@@ -2,6 +2,7 @@ import { RadioChangeEvent, Row, Col, Button } from 'antd';
 import { FC, MouseEventHandler, useState } from 'react';
 import styled from 'styled-components';
 import * as data from './survey-processing-answer.data';
+import axios from 'axios';
 
 type ISurveyProcessingAnswerComponentProp = {
   currentOrder: number;
@@ -30,6 +31,18 @@ export const SurveyProcessingAnswerComponent: FC<ISurveyProcessingAnswerComponen
     setCurrentOrder(item.next_question_order);
   };
 
+  const startUser = async() => {
+    console.log("asd");
+    const response = await axios.post('http://localhost:8080/start',{
+      ip_address: "127.0.0.0",
+      agent_os: "window",
+      agent_browser: "chrome",
+      access_url: "https://haklim",
+    });
+    console.log(response);
+  }
+
+
   const arrangeItemByRow = (currentOrder: number) => (
     <Row key={data.question_answer_data[currentOrder].length} gutter={[16, 24]}>
       {data.question_answer_data[currentOrder].map((item) => {
@@ -45,7 +58,7 @@ export const SurveyProcessingAnswerComponent: FC<ISurveyProcessingAnswerComponen
               width: '100%',
             }}
             block
-            onClick={() => handleClickButton(item)}
+            onClick={() => {handleClickButton(item); startUser()}}
           >
             {item.option}
           </Button>

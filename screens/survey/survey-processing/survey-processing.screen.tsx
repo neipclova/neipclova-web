@@ -1,5 +1,6 @@
 import { FC, useEffect, useState } from 'react';
 import { Card, Space, Typography, Divider, Row, Button } from 'antd';
+import axios from 'axios';
 import { SurveyProcessingAnswerComponent, SurveyProcessingQuestionComponent } from './modules';
 import { SurveyProcessingLayout } from '../../../components';
 const { Title } = Typography;
@@ -23,6 +24,17 @@ export const SurveyProcessingScreen: FC<ISurveyProcessingScreenProps> = () => {
     }
     console.log('click type:', type, currentOrder);
   };
+
+  const startUser = async() => {
+    console.log("asd");
+    const response = await axios.post('http://localhost:8080/start',{
+      ip_address: "127.0.0.0",
+      agent_os: "window",
+      agent_browser: "chrome",
+      access_url: "https://haklim",
+    });
+    console.log(response);
+  }
 
   useEffect(() => {
     console.log;
@@ -62,6 +74,7 @@ export const SurveyProcessingScreen: FC<ISurveyProcessingScreenProps> = () => {
                       onClick={() => {
                         setCurrentOrder(2);
                         handleClickButton(item);
+                        startUser();
                       }}
                     >
                       {item}
