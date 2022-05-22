@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Button, Space, Typography } from 'antd';
+import { Button, Space } from 'antd';
 import Link from 'next/link';
 import { LinkOutlined } from '@ant-design/icons';
 import styled from 'styled-components';
