@@ -39,8 +39,9 @@ export const question_data: IProps = {
   5: {
     question: {
       student:
-        '친구가 갑자기 뒤돌아봐서 깜짝 놀란 나머지, 아이쿠! 돌부리에 걸려 크게 넘어저벼렸다.',
-      worker: '동료가 갑자기 뒤돌아봐서 깜짝 놀란 나머지, 아이쿠! 돌부리에 걸려 크게 넘어저벼렸다.',
+        '친구가 갑자기 뒤돌아봐서 깜짝 놀란 나머지,<br>아이쿠! 돌부리에 걸려 크게 넘어저벼렸다.',
+      worker:
+        '동료가 갑자기 뒤돌아봐서 깜짝 놀란 나머지,<br>아이쿠! 돌부리에 걸려 크게 넘어저벼렸다.',
     },
     image_uri: '/Users/silvia1/Desktop/git/neipclova/neipclova-web/assets/images/morning.png',
   },
@@ -53,29 +54,30 @@ export const question_data: IProps = {
   },
   7: {
     question: {
-      student: '수업시간에 복잡한 과제를 받았는데.. "혹시 질문있나?" 교수님이 묻는다',
-      worker: '요구사항이 수두룩한 새로운 업무를 받았는데.. “혹시 다 이해하셨나요?” 상사가 묻는다',
+      student: '수업시간에 복잡한 과제를 받았는데..<br>"혹시 질문있나?" 교수님이 묻는다',
+      worker:
+        '요구사항이 수두룩한 새로운 업무를 받았는데..<br>“혹시 다 이해하셨나요?” 상사가 묻는다',
     },
     image_uri: '/Users/silvia1/Desktop/git/neipclova/neipclova-web/assets/images/noon.png',
   },
   8: {
     question: {
-      student: '점심시간이다! 친구가 뜨끈한 순대국밥 먹자고 한다. 근데 오늘은 별로 안 땡기네..',
-      worker: '점심시간이다! 상사가 뜨끈한 순대국밥 먹자고 한다. 근데 오늘은 별로 안 땡기네..',
+      student: '점심시간이다! 친구가 뜨끈한 순대국밥 먹자고 한다.<br>근데 오늘은 별로 안 땡기네..',
+      worker: '점심시간이다! 상사가 뜨끈한 순대국밥 먹자고 한다.<br>근데 오늘은 별로 안 땡기네..',
     },
     image_uri: '/Users/silvia1/Desktop/git/neipclova/neipclova-web/assets/images/noon.png',
   },
   9: {
     question: {
-      student: '음식점에서 노래가 흘러나온다. "흔들리는 꽃들 속에서~ 네 샴푸향이 느껴진거야"',
-      worker: '음식점에서 노래가 흘러나온다. "흔들리는 꽃들 속에서~ 네 샴푸향이 느껴진거야"',
+      student: '음식점에서 노래가 흘러나온다.<br>"흔들리는 꽃들 속에서~ 네 샴푸향이 느껴진거야"',
+      worker: '음식점에서 노래가 흘러나온다.<br>"흔들리는 꽃들 속에서~ 네 샴푸향이 느껴진거야"',
     },
     image_uri: '/Users/silvia1/Desktop/git/neipclova/neipclova-web/assets/images/noon.png',
   },
   10: {
     question: {
-      student: '친구들이랑 밥 먹고 후식으로 자판기음료를 마시려고 한다 거기서 나는',
-      worker: '동료들과 밥 먹고 후식으로 자판기음료를 마시려고 한다 거기서 나는',
+      student: '친구들이랑 밥 먹고 후식으로 자판기음료를 마시려고 한다<br>거기서 나는',
+      worker: '동료들과 밥 먹고 후식으로 자판기음료를 마시려고 한다<br>거기서 나는',
     },
     image_uri: '/Users/silvia1/Desktop/git/neipclova/neipclova-web/assets/images/noon.png',
   },

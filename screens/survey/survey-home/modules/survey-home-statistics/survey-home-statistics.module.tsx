@@ -1,7 +1,5 @@
 import { FC, useEffect, useState } from 'react';
-import { Button, Space, Typography } from 'antd';
-import Link from 'next/link';
-import { LinkOutlined } from '@ant-design/icons';
+import { Typography } from 'antd';
 import { getNumVisitor } from './survey-home-statistics.method';
 
 type ISurveyHomeStatisticsModuleProps = {};

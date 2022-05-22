@@ -1,6 +1,7 @@
 import { GetServerSideProps } from 'next';
 import Head from 'next/head';
 import { SurveyResultScreen } from '../../../screens';
+
 export const getServerSideProps: GetServerSideProps = async (context) => {
   return {
     props: {},
