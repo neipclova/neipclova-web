@@ -38,7 +38,7 @@ module.exports = {
     ],
     'import/export': 0,
     'prettier/prettier': 'warn',
-    '@typescript-eslint/explicit-module-boundary-types': 'off',
+    '@typescript-eslint/explicit-module-boundary-types': 0,
     '@typescript-eslint/explicit-function-return-type': 0,
     '@typescript-eslint/explicit-member-accessibility': 0,
     '@typescript-eslint/no-unused-vars': 'off',
@@ -67,5 +67,6 @@ module.exports = {
         allow: ['warn', 'error'],
       },
     ],
+    'no-unexpected-multiline': 'error',
   },
 };

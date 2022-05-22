@@ -1,9 +1,10 @@
-import { AppProps } from 'next/app';
 import Head from 'next/head';
 import PropTypes from 'prop-types';
+import './_app.css';
 import 'antd/dist/antd.css';
+import { AppContext } from 'next/app';
 
-const NeipClova = ({ Component }) => {
+const NeipClova = ({ Component }: AppContext) => {
   return (
     <>
       <Head>
