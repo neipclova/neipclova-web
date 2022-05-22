@@ -31,6 +31,7 @@ export const SurveyProcessingScreen: FC<ISurveyProcessingScreenProps> = () => {
   return (
     <SurveyProcessingLayout>
       <div
+        className='global-fnt'
         style={{
           display: 'flex',
           padding: 30,

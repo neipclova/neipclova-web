@@ -2,8 +2,16 @@ import { FC } from 'react';
 import { Button, Space, Typography } from 'antd';
 import Link from 'next/link';
 import { LinkOutlined } from '@ant-design/icons';
+import styled from 'styled-components';
 
 type ISurveyHomeDetailModuleProps = {};
+
+const HoverButton = styled(Button)`
+  :hover {
+    color: #00ccff;
+    background-color: white;
+  }
+`;
 
 export const SurveyHomeDetailModule: FC<ISurveyHomeDetailModuleProps> = () => {
   return (
@@ -11,9 +19,9 @@ export const SurveyHomeDetailModule: FC<ISurveyHomeDetailModuleProps> = () => {
       <Space direction="vertical">
         <Link href="/survey">
           <a>
-            <Button type="primary" shape="round" size="large">
+            <HoverButton type="primary" shape="round" size="large">
               지금 바로 시작하기
-            </Button>
+            </HoverButton>
           </a>
         </Link>
         <br />

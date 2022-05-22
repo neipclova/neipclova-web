@@ -1,6 +1,7 @@
 import { AppProps } from 'next/app';
 import Head from 'next/head';
 import PropTypes from 'prop-types';
+import './_app.css';
 import 'antd/dist/antd.css';
 
 const NeipClova = ({ Component }) => {
