@@ -3,16 +3,26 @@ import axios from 'axios';
 import { FC, useEffect, useState } from 'react';
 import styled from 'styled-components';
 
-type ISurveyProcessingAnswerComponentProp = {
-  currentOrder: number;
-  setCurrentOrder: any;
-};
-type IProps = {
+type IAnswers = {
+  [key: number]: {
   order: number;
   next_question_order: number | null;
   option: string;
   score?: string;
+}[]
+};
+type IAnswer = {
+order: number;
+next_question_order: number | null;
+option: string;
+score?: string;
 }[];
+type ISurveyProcessingAnswerComponentProp = {
+  currentOrder: number;
+  setCurrentOrder: any;
+  options: IAnswers;
+};
+
 const HoverSpace = styled(Space)`
   :hover {
     color: #efea06;
@@ -22,42 +32,14 @@ const HoverSpace = styled(Space)`
 export const SurveyProcessingAnswerComponent: FC<ISurveyProcessingAnswerComponentProp> = ({
   currentOrder,
   setCurrentOrder,
+  options,
 }) => {
-  const [data, setData] = useState<IProps>([{
-    order: 1,
-    next_question_order: 2,
-    option: "안녕1",
-    score: "s"
-  },{
-    order: 1,
-    next_question_order: 2,
-    option: "안녕2",
-    score: "s"
-  }]);
-  useEffect(() => {
-    let completed = false;
-    async function get() {
-      const response = await axios({
-      url: 'http://localhost:8080/answer',
-      method: 'get',
-      data:{
-        currentOrder: currentOrder
-      }});
-      if(!completed){
-        setData(response.data);
-      }
-    }
-    get();
-    return () => {
-      completed = true;
-    }
-  }, [currentOrder]);
   const handleClickButton = (item: any) => {
     setCurrentOrder(item.next_question_order);
   };
   const arrangeItemByRow = (currentOrder: number) => (
-    <Row key={data.length} gutter={[16, 24]}>
-      {data.map((item) => (
+    <Row key={options[currentOrder].length} gutter={[16, 24]}>
+      {options[currentOrder].map((item) => (
         <HoverSpace
           key={item.order}
           size="large"

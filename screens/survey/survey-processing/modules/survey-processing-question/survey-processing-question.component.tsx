@@ -3,54 +3,42 @@ import axios from 'axios';
 import { FC, useEffect, useState } from 'react';
 // import * as data from './survey-processing-question.data';
 
-type ISurveyProcessingQuestionComponentProp = {
-  setCurrentOrder: any;
-  currentOrder: number;
-  type: string;
+type IQuestions = {
+  [key: number]: {
+    question: {
+      [key: string]: string;
+    };
+    image_uri: string;
+  };
 };
-type IProps = {
+
+type IQuestion = {
   question: {
     [key: string]: string;
   };
   image_uri: string;
 };
+
+type ISurveyProcessingQuestionComponentProp = {
+  setCurrentOrder: any;
+  currentOrder: number;
+  type: string;
+  questions: IQuestions
+};
+
 const { Title } = Typography;
 
 export const SurveyProcessingQuestionComponent: FC<ISurveyProcessingQuestionComponentProp> = ({
   setCurrentOrder,
   currentOrder,
   type,
+  questions
 }) => {
-  const [data, setData] = useState<IProps>({
-    question: {
-      student: '학생?',
-      worker: '직장인?',
-    },
-    image_uri: '/Users/silvia1/Desktop/git/neipclova/neipclova-web/assets/images/dawn.png',
-  });
-  useEffect(() => {
-    let completed = false;
-    async function get() {
-      const response = await axios({
-      url: 'http://localhost:8080/question',
-      method: 'get',
-      data:{
-        currentOrder: currentOrder
-      }});
-      if(!completed){
-        setData(response.data);
-      }
-    }
-    get();
-    return () => {
-      completed = true;
-    }
-  }, [currentOrder]);
   return (
     <>
       <Title level={3} style={{ color: 'white' }}>
         <div
-          dangerouslySetInnerHTML={{ __html: data.question[type] }}
+          dangerouslySetInnerHTML={{ __html: questions[currentOrder].question[type] }}
         />
       </Title>
 
