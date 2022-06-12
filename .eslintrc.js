@@ -13,9 +13,6 @@ module.exports = {
     'plugin:@next/next/recommended',
   ],
   env: {
-    es6: true,
-    browser: true,
-    jest: true,
     node: true,
   },
   settings: {
@@ -29,6 +26,17 @@ module.exports = {
     },
   },
   rules: {
+    'import/order': [
+      1,
+      {
+        groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index'],
+        'newlines-between': 'always',
+        alphabetize: {
+          order: 'asc',
+          caseInsensitive: false,
+        },
+      },
+    ],
     'import/newline-after-import': [1],
     'import/no-useless-path-segments': [
       'error',
@@ -36,37 +44,40 @@ module.exports = {
         noUselessIndex: true,
       },
     ],
-    'import/export': 0,
+    '@typescript-eslint/interface-name-prefix': 'off',
+    '@typescript-eslint/explicit-function-return-type': 'off',
+    '@typescript-eslint/no-explicit-any': 'off',
     'prettier/prettier': 'warn',
-    '@typescript-eslint/explicit-module-boundary-types': 0,
-    '@typescript-eslint/explicit-function-return-type': 0,
-    '@typescript-eslint/explicit-member-accessibility': 0,
+    '@typescript-eslint/explicit-module-boundary-types': 'off',
     '@typescript-eslint/no-unused-vars': 'off',
     '@typescript-eslint/no-empty-function': 'warn',
-    '@typescript-eslint/no-use-before-define': 'off',
-    '@typescript-eslint/ban-types': 'off',
-    '@typescript-eslint/ban-ts-comment': 'off',
-    'no-empty-pattern': 'off',
-    'react/display-name': 0,
-    'react/prop-types': 0,
-    'no-empty': 'off',
-    'no-unused-vars': 'off',
     'unused-imports/no-unused-imports': 'error',
     'unused-imports/no-unused-vars': [
       'warn',
-      {
-        vars: 'all',
-        varsIgnorePattern: '^_',
-        args: 'after-used',
-        argsIgnorePattern: '^_',
-      },
+      { vars: 'all', varsIgnorePattern: '^_', args: 'after-used', argsIgnorePattern: '^_' },
     ],
+    '@typescript-eslint/no-use-before-define': 'off',
+    '@typescript-eslint/ban-types': 'off',
+    '@typescript-eslint/ban-ts-comment': 'off',
     'no-console': [
       1,
       {
         allow: ['warn', 'error'],
       },
     ],
-    'no-unexpected-multiline': 'error',
+    'no-empty-pattern': 'off',
+    'padding-line-between-statements': [
+      'error',
+      {
+        blankLine: 'always',
+        prev: '*',
+        next: ['export'],
+      },
+      {
+        blankLine: 'any',
+        prev: ['export'],
+        next: ['export'],
+      },
+    ],
   },
 };
