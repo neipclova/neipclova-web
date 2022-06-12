@@ -1,7 +1,7 @@
-import { FC } from 'react';
+import { LinkOutlined } from '@ant-design/icons';
 import { Button, Space } from 'antd';
 import Link from 'next/link';
-import { LinkOutlined } from '@ant-design/icons';
+import { FC } from 'react';
 import styled from 'styled-components';
 
 type ISurveyHomeDetailModuleProps = {};

@@ -1,5 +1,6 @@
-import { FC, useEffect, useState } from 'react';
 import { Typography } from 'antd';
+import { FC, useEffect, useState } from 'react';
+
 import { getNumVisitor } from './survey-home-statistics.method';
 
 type ISurveyHomeStatisticsModuleProps = {};

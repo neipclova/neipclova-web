@@ -5,8 +5,7 @@ import './_app.css';
 import 'antd/dist/antd.css';
 import { ThemeProvider } from 'styled-components';
 
-import { GlobalStyle } from '../themes/GlobalStyle';
-import theme from '../themes/theme';
+import { GlobalStyle, theme } from 'themes';
 
 const NeipClova = ({ Component, pageProps }: AppProps) => {
   return (

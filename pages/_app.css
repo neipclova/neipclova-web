@@ -1,17 +1,10 @@
 @font-face {
-    font-family: 'SSShinb7';
-    font-style: normal;
-    font-weight: 100;
-    src: url("../assets/fonts/SSShinb7.ttf");
+  font-family: 'SSShinb7';
+  font-style: normal;
+  font-weight: 100;
+  src: url('../assets/fonts/SSShinb7.ttf');
 }
 @font-face {
-    font-family: 'tvN';
-    src: url("../assets/fonts/tvN 즐거운이야기 Medium.ttf");
-}
-
-.global-fnt {
-    font-family: 'SSShinb7';
-}
-._app {
-    font-family: 'SSShinb7';
+  font-family: 'tvN';
+  src: url('../assets/fonts/tvN 즐거운이야기 Medium.ttf');
 }

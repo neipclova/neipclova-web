@@ -1,2 +1,2 @@
-export * from './___styles';
-export * from './___global-style';
+export * from './global-style';
+export * from './theme';
