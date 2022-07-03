@@ -12,25 +12,22 @@ import {
 
 type ISurveyHomeScreenProps = {};
 
-const StyledDiv = styled.div`
-  display: flex;
-  padding: 10;
-  justify-content: center;
-  background: ${({ theme }) => theme.colors.white};
+const Div = styled.div`
+  padding: ${({ theme }) => theme.paddings.lg};
+  background: ${({ theme }) =>
+    `linear-gradient(${theme.colors.sky}, 50%, ${theme.colors.red}, ${theme.colors.dark_red})`};
 `;
 
 export const SurveyHomeScreen: FC<ISurveyHomeScreenProps> = () => {
   return (
     <SurveyHomeLayout>
-      <StyledDiv>
+      <Div>
         <Space direction="vertical">
           <SurveyHomeTitleModule />
-          {/* <Card bordered={false} style={{ background: 'linear-gradient(#f96b7e, #afe5f8)'}}> */}
-          <SurveyHomeDetailModule />
-          {/* </Card> */}
           <SurveyHomeStatisticsModule />
+          <SurveyHomeDetailModule />
         </Space>
-      </StyledDiv>
+      </Div>
     </SurveyHomeLayout>
   );
 };

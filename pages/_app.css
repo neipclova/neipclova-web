@@ -8,3 +8,15 @@
   font-family: 'tvN';
   src: url('../assets/fonts/tvN 즐거운이야기 Medium.ttf');
 }
+@font-face {
+  font-family: 'nanumsquare';
+  src: url('../assets/fonts/NanumSquareR.ttf');
+}
+@font-face {
+  font-family: 'KOHIBaeum';
+  src: url('../assets/fonts/KOHIBaeum.ttf');
+}
+@font-face {
+  font-family: 'anakseo';
+  src: url('../assets/fonts/a낙서.ttf');
+}

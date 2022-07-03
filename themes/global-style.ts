@@ -1,12 +1,18 @@
 import { createGlobalStyle } from 'styled-components';
 import { reset } from 'styled-reset';
 
-import { device } from './theme';
+import { device, theme } from './theme';
 
 export const GlobalStyle = createGlobalStyle`
 ${reset}
+  body { 
+    display: flex;
+    justify-content: center;
+    padding: ${theme.paddings.sm};
+    textAlign: 'center';
+  }
   .global-fnt {
-    font-family: 'SSShinb7';
+    font-family: 'anakseo';
   }
   button {
     background: none;
