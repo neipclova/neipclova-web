@@ -11,13 +11,12 @@ type ISurveyHomeLayoutProps = {
 
 export const SurveyHomeLayout: FC<ISurveyHomeLayoutProps> = ({ children }) => {
   return (
-    <Layout>
+    <Layout className="global-fnt">
       <LayoutHeader>
         <Typography.Title level={5}>네잎클로바&nbsp;</Typography.Title>
         <Image src={logo} width="20px" height="20px" objectFit="contain"></Image>
       </LayoutHeader>
-      <Layout.Content>{children}</Layout.Content>
-      <Layout.Footer></Layout.Footer>
+      <LayoutContent>{children}</LayoutContent>
     </Layout>
   );
 };
@@ -26,6 +25,15 @@ const LayoutHeader = styled(Layout.Header)`
   display: flex;
   height: 100%;
   justify-content: center;
-  font-size: ${({ theme }) => theme.fonts.size.sm};
   background: ${({ theme }) => theme.colors.sky};
+`;
+
+const LayoutContent = styled(Layout.Content)`
+  display: flex;
+  justify-content: center;
+  padding: ${({ theme }) => theme.paddings.lg};
+  height: 100vh;
+  width: 100vw;
+  background: ${({ theme }) =>
+    `linear-gradient(${theme.colors.sky}, 50%, ${theme.colors.red}, ${theme.colors.dark_red})`};
 `;

@@ -6,10 +6,7 @@ import { device, theme } from './theme';
 export const GlobalStyle = createGlobalStyle`
 ${reset}
   body { 
-    display: flex;
-    justify-content: center;
-    padding: ${theme.paddings.sm};
-    textAlign: 'center';
+    padding: ${theme.paddings.base};
   }
   .global-fnt {
     font-family: 'anakseo';
@@ -26,7 +23,7 @@ ${reset}
   }
   .pc-tablet-only {
     display: block;
-    ${device.mobile} {
+    ${device.desktopL} {
       display: none;
     }
   }

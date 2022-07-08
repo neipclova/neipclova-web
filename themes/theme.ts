@@ -35,7 +35,7 @@ const paddings = {
   xl: '3rem',
 };
 
-const fonts = {
+export const fonts = {
   family: {
     base: `'nanumsquare', sans-serif`,
     title: `'SSShinb7', serif`,
@@ -55,15 +55,15 @@ const fonts = {
 };
 
 const size = {
-  mobile: '425px',
-  tablet: '768px',
-  desktop: '1440px',
+  mobile: '320px',
+  tablet: '641px',
+  desktop: '1025px',
 };
 
 export const device = {
-  mobile: `@media only screen and (max-width: ${size.mobile})`,
-  tablet: `@media only screen and (max-width: ${size.tablet})`,
-  desktopL: `@media only screen and (max-width: ${size.desktop})`,
+  mobile: `@media only screen and (min-width: ${size.mobile})`,
+  tablet: `@media only screen and (min-width: ${size.tablet})`,
+  desktopL: `@media only screen and (min-width: ${size.desktop})`,
 };
 
 export const theme: DefaultTheme = {

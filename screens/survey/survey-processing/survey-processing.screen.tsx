@@ -1,9 +1,11 @@
-import { FC, useEffect, useState } from 'react';
 import { Space } from 'antd';
-import { SurveyProcessingAnswerComponent, SurveyProcessingQuestionComponent } from './modules';
-import { SurveyProcessingLayout } from '../../../components';
-import { setBackground } from './survey-processing.method';
 import { useRouter } from 'next/router';
+import { FC, useEffect, useState } from 'react';
+
+import { SurveyProcessingLayout } from '../../../components';
+
+import { SurveyProcessingAnswerComponent, SurveyProcessingQuestionComponent } from './modules';
+import { setBackground } from './survey-processing.method';
 
 type ISurveyProcessingScreenProps = {};
 
@@ -20,7 +22,7 @@ export const SurveyProcessingScreen: FC<ISurveyProcessingScreenProps> = () => {
   }, [currentOrder, type]);
 
   return (
-    <SurveyProcessingLayout setBackground={setBackground(currentOrder)}>
+    <SurveyProcessingLayout background={setBackground(currentOrder)}>
       {currentOrder && (
         <Space
           direction="vertical"

@@ -1,32 +1,40 @@
 import { Layout } from 'antd';
 import { FC, ReactNode } from 'react';
+import styled from 'styled-components';
 
 type ISurveyProcessingLayoutProps = {
   children: ReactNode;
-  setBackground: string;
+  background: string;
 };
 
 export const SurveyProcessingLayout: FC<ISurveyProcessingLayoutProps> = ({
   children,
-  setBackground,
+  background,
 }) => {
   return (
     <Layout className="global-fnt">
-      <Layout.Header style={{ padding: 0, height: 'auto' }}></Layout.Header>
-      <Layout.Content
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          padding: 30,
-          height: '100vh',
-          width: '100vw',
-          alignItems: 'center',
-          background: setBackground,
-        }}
-      >
-        {children}
-      </Layout.Content>
+      <LayoutHeader></LayoutHeader>
+      <LayoutContent background={background}>{children}</LayoutContent>
       <Layout.Footer></Layout.Footer>
     </Layout>
   );
 };
+
+const LayoutHeader = styled(Layout.Header)`
+  padding: 0;
+  height: auto;
+`;
+
+interface LayoutContentProps {
+  background: string;
+}
+
+const LayoutContent = styled(Layout.Content)<LayoutContentProps>`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: ${({ theme }) => theme.paddings.lg};
+  height: 100vh;
+  width: 100vw;
+  background: ${(props) => props.background};
+`;
