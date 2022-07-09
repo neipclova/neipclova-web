@@ -12,10 +12,13 @@ const flex = (direction = 'row', justify = 'center', align = 'center') => {
 const colors = {
   black: '#0E0E0E',
   white: '#FFFFFF',
-  yellow: '#edb83c',
+  yellow: '#F7F800',
   orange: '#eb7952',
   gray: '#6e6e6e',
   gray_background: '#f5f5f5',
+  sky: '#afe5f8',
+  red: '#f96b7e',
+  dark_red: '#003332',
 };
 
 const margins = {
@@ -32,17 +35,17 @@ const paddings = {
   xl: '3rem',
 };
 
-const fonts = {
+export const fonts = {
   family: {
-    base: `'SSShinb7', sans-serif`,
-    title: `'tvN', serif`,
+    base: `'nanumsquare', sans-serif`,
+    title: `'SSShinb7', serif`,
   },
   size: {
-    sm: '1.4rem',
-    base: '1.6rem',
-    lg: '2rem',
-    xl: '2.5rem',
-    title: '6rem',
+    sm: '0.4rem',
+    base: '0.8rem',
+    lg: '1rem',
+    xl: '2rem',
+    title: '4rem',
   },
   weight: {
     light: 100,
@@ -52,15 +55,15 @@ const fonts = {
 };
 
 const size = {
-  mobile: '425px',
-  tablet: '768px',
-  desktop: '1440px',
+  mobile: '320px',
+  tablet: '641px',
+  desktop: '1025px',
 };
 
 export const device = {
-  mobile: `@media only screen and (max-width: ${size.mobile})`,
-  tablet: `@media only screen and (max-width: ${size.tablet})`,
-  desktopL: `@media only screen and (max-width: ${size.desktop})`,
+  mobile: `@media only screen and (min-width: ${size.mobile})`,
+  tablet: `@media only screen and (min-width: ${size.tablet})`,
+  desktopL: `@media only screen and (min-width: ${size.desktop})`,
 };
 
 export const theme: DefaultTheme = {

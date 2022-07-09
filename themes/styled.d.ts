@@ -11,6 +11,9 @@ declare module 'styled-components' {
       orange: string;
       gray: string;
       gray_background: string;
+      sky: string;
+      red: string;
+      dark_red: string;
     };
 
     margins: {

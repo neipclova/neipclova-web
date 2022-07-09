@@ -1,7 +1,9 @@
-import { FC, useEffect, useState } from 'react';
 import { Space } from 'antd';
-import { SurveyProcessingAnswerComponent, SurveyProcessingQuestionComponent } from './modules';
+import { FC, useEffect, useState } from 'react';
+
 import { SurveyProcessingLayout } from '../../../components';
+
+import { SurveyProcessingAnswerComponent, SurveyProcessingQuestionComponent } from './modules';
 import { setBackground } from './survey-processing.method';
 import { useRouter, withRouter } from 'next/router';
 import axios from 'axios';
@@ -30,7 +32,7 @@ export const SurveyProcessingScreen: FC<ISurveyProcessingScreenProps> = () => {
   }, [currentOrder, type]);
 
   return (
-    <SurveyProcessingLayout setBackground={setBackground(currentOrder)}>
+    <SurveyProcessingLayout background={setBackground(currentOrder)}>
       {currentOrder && (
         <Space
           direction="vertical"

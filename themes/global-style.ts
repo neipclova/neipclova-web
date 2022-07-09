@@ -1,12 +1,15 @@
 import { createGlobalStyle } from 'styled-components';
 import { reset } from 'styled-reset';
 
-import { device } from './theme';
+import { device, theme } from './theme';
 
 export const GlobalStyle = createGlobalStyle`
 ${reset}
+  body { 
+    padding: ${theme.paddings.base};
+  }
   .global-fnt {
-    font-family: 'SSShinb7';
+    font-family: 'anakseo';
   }
   button {
     background: none;
@@ -20,7 +23,7 @@ ${reset}
   }
   .pc-tablet-only {
     display: block;
-    ${device.mobile} {
+    ${device.desktopL} {
       display: none;
     }
   }
