@@ -8,9 +8,47 @@ import { getUserAgent } from './survey-home-detail.method';
 
 type ISurveyHomeDetailModuleProps = {};
 
-const [visitorId, setVisitorId] = useState(0);
+
 
 export const SurveyHomeDetailModule: FC<ISurveyHomeDetailModuleProps> = () => {
+
+  const [visitorId, setVisitorId] = useState(0);
+  const saveVisitorInfo = async () => {
+    const userAgentResponse = await getUserAgent();
+
+    const response = await axios.post<any, { visitorId: number; }>('http://localhost:8080/start/club', {
+      ip_address: "127.0.0.0",
+      agent_os: userAgentResponse.os,
+      agent_browser: userAgentResponse.browser,
+      access_url: "https://test",
+      created_at: "yyyy-MM-dd HH:mm:ss"
+    });
+
+    console.log(response);
+    setVisitorId(response.visitorId);
+
+
+    // 테스트 코드
+    // const response = {
+    //   ip_address: "127.0.0.0",
+    //   agent_os: userAgentResponse.os,
+    //   agent_browser: userAgentResponse.browser,
+    //   access_url: "https://test",
+    //   created_at: "yyyy-MM-dd HH:mm:ss"
+    // };
+
+    // const expected_reponse = { visitorId: 12345678 } // visitor_id
+    // console.log(expected_reponse);
+    // setVisitorId(expected_reponse.visitorId);
+  }
+
+  useEffect(() => {
+    saveVisitorInfo();
+  }, []);
+
+  const handleStartButtonClick = () => {
+    saveVisitorInfo();
+  }
   return (
     <StyledSpace direction="vertical" align="center">
       <Link href={{ pathname: "/survey", query: { visitorId: visitorId } }}>
@@ -51,40 +89,3 @@ const HoverButtonSmall = styled(Button)`
     border: 1px solid white;
   }
 `;
-
-const saveVisitorInfo = async () => {
-  const userAgentResponse = await getUserAgent();
-
-  const response = await axios.post<any, { visitorId: number; }>('http://localhost:8080/start/club', {
-    ip_address: "127.0.0.0",
-    agent_os: userAgentResponse.os,
-    agent_browser: userAgentResponse.browser,
-    access_url: "https://test",
-    created_at: "yyyy-MM-dd HH:mm:ss"
-  });
-
-  console.log(response);
-  setVisitorId(response.visitorId);
-
-
-  // 테스트 코드
-  // const response = {
-  //   ip_address: "127.0.0.0",
-  //   agent_os: userAgentResponse.os,
-  //   agent_browser: userAgentResponse.browser,
-  //   access_url: "https://test",
-  //   created_at: "yyyy-MM-dd HH:mm:ss"
-  // };
-
-  // const expected_reponse = { visitorId: 12345678 } // visitor_id
-  // console.log(expected_reponse);
-  // setVisitorId(expected_reponse.visitorId);
-}
-
-useEffect(() => {
-  saveVisitorInfo();
-}, []);
-
-const handleStartButtonClick = () => {
-  saveVisitorInfo();
-}
