@@ -21,18 +21,18 @@ export const SurveyProcessingAnswerComponent: FC<ISurveyProcessingAnswerComponen
   visitorId
 }) => {
   const saveUserAnswer = async (currentOrder: number, item: any) => {
-    const response = {
-      visitor_id: visitorId,
-      question: currentOrder,
-      answer: item.order,
-      created_at: "yyyy-MM-dd HH:mm:ss"
-    };
-    // const response = await axios.post('http://localhost:8080/answer/club', {
-    //   visitor_id: {visitorId},
+    // const response = {
+    //   visitor_id: visitorId,
     //   question: currentOrder,
     //   answer: item.order,
     //   created_at: "yyyy-MM-dd HH:mm:ss"
-    // });
+    // };
+    const response = await axios.post('http://localhost:8080/answer/club', {
+      visitor_id: { visitorId },
+      question: currentOrder,
+      answer: item.order,
+      created_at: "yyyy-MM-dd HH:mm:ss"
+    });
     console.log(response);
   }
 

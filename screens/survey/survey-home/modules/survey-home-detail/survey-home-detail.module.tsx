@@ -22,30 +22,30 @@ export const SurveyHomeDetailModule: FC<ISurveyHomeDetailModuleProps> = (hi: any
   const saveVisitorInfo = async () => {
     const userAgentResponse = await getUserAgent();
 
-    // const response = await axios.post<any, { visitorId: number; }>('http://localhost:8080/start/club', {
-    //   ip_address: "127.0.0.0",
-    //   agent_os: userAgentResponse.os,
-    //   agent_browser: userAgentResponse.browser,
-    //   access_url: "https://test",
-    //   created_at: "yyyy-MM-dd HH:mm:ss"
-    // });
-
-    // console.log(response);
-    // setVisitorId(response.visitorId);
-
-
-    // 테스트 코드
-    const response = {
+    const response = await axios.post<any, { visitorId: number; }>('http://localhost:8080/start/club', {
       ip_address: "127.0.0.0",
       agent_os: userAgentResponse.os,
       agent_browser: userAgentResponse.browser,
       access_url: "https://test",
       created_at: "yyyy-MM-dd HH:mm:ss"
-    };
+    });
 
-    const expected_reponse = { visitorId: 12345678 } // visitor_id
-    console.log(expected_reponse);
-    setVisitorId(expected_reponse.visitorId);
+    console.log(response);
+    setVisitorId(response.visitorId);
+
+
+    // 테스트 코드
+    // const response = {
+    //   ip_address: "127.0.0.0",
+    //   agent_os: userAgentResponse.os,
+    //   agent_browser: userAgentResponse.browser,
+    //   access_url: "https://test",
+    //   created_at: "yyyy-MM-dd HH:mm:ss"
+    // };
+
+    // const expected_reponse = { visitorId: 12345678 } // visitor_id
+    // console.log(expected_reponse);
+    // setVisitorId(expected_reponse.visitorId);
   }
 
   useEffect(() => {
