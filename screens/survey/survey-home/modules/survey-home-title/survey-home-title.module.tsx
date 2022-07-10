@@ -12,7 +12,7 @@ export const SurveyHomeTitleModule: FC<ISurveyHomeTitleModuleProps> = () => {
   const { Title } = Typography;
   return (
     <>
-      
+
       <Title level={4} style={{ textAlign: 'center' }}>
         꽉 막히는 출근길!
       </Title>
@@ -27,7 +27,7 @@ export const SurveyHomeTitleModule: FC<ISurveyHomeTitleModuleProps> = () => {
         display: 'flex',
         justifyContent: 'center',
       }}>
-          
+
           <Image src={tired} width={200} height={200} ></Image>
       </div>
     </>
