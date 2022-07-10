@@ -14,16 +14,15 @@ export const SurveyProcessingScreen: FC<ISurveyProcessingScreenProps> = () => {
   const router = useRouter();
   const [currentOrder, setCurrentOrder] = useState(1);
   const [type, setType] = useState('student');
-  const visitorId = Number(router.query.visitorId)
+  const visitorSurveyResultId = Number(router.query.visitorSurveyResultId)
 
   useEffect(() => {
     if (!currentOrder) {
       console.log('result');
 
       // result api가 여기서 호출되어야 하나..?
-      const response = axios.post<any, { visitorId: number; }>('http://localhost:8080/result/club', {
-        visitor_id: visitorId,
-        timestamp: "yyyy-MM-dd HH:mm:ss"
+      const response = axios.post<any, { visitorId: number; }>('http://localhost:8080/result/CLUB', {
+        visitorSurveyResultId: visitorSurveyResultId,
       });
       console.log(response); // response : { result: string(enum)}
 
@@ -51,7 +50,7 @@ export const SurveyProcessingScreen: FC<ISurveyProcessingScreenProps> = () => {
           <SurveyProcessingAnswerComponent
             setCurrentOrder={setCurrentOrder}
             currentOrder={currentOrder}
-            visitorId={visitorId}
+            visitorSurveyResultId={visitorSurveyResultId}
           />
         </Space>
       )}
