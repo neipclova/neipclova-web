@@ -1,11 +1,12 @@
 import { Space } from 'antd';
-import { useRouter } from 'next/router';
 import { FC, useEffect, useState } from 'react';
 
 import { SurveyProcessingLayout } from '../../../components';
 
 import { SurveyProcessingAnswerComponent, SurveyProcessingQuestionComponent } from './modules';
 import { setBackground } from './survey-processing.method';
+import { useRouter, withRouter } from 'next/router';
+import axios from 'axios';
 
 type ISurveyProcessingScreenProps = {};
 
@@ -13,10 +14,18 @@ export const SurveyProcessingScreen: FC<ISurveyProcessingScreenProps> = () => {
   const router = useRouter();
   const [currentOrder, setCurrentOrder] = useState(1);
   const [type, setType] = useState('student');
+  const visitorSurveyResultId = Number(router.query.visitorSurveyResultId)
 
   useEffect(() => {
     if (!currentOrder) {
       console.log('result');
+
+      // result api가 여기서 호출되어야 하나..?
+      const response = axios.post<any, { visitorId: number; }>('http://localhost:8080/result/CLUB', {
+        visitorSurveyResultId: visitorSurveyResultId,
+      });
+      console.log(response); // response : { result: string(enum)}
+
       router.push('/survey/result');
     }
   }, [currentOrder, type]);
@@ -41,6 +50,7 @@ export const SurveyProcessingScreen: FC<ISurveyProcessingScreenProps> = () => {
           <SurveyProcessingAnswerComponent
             setCurrentOrder={setCurrentOrder}
             currentOrder={currentOrder}
+            visitorSurveyResultId={visitorSurveyResultId}
           />
         </Space>
       )}
