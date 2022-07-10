@@ -7,4 +7,5 @@ const Neipclova = () => {
     </div>
   );
 };
+
 export default Neipclova;

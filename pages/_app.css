@@ -1,17 +1,22 @@
 @font-face {
-    font-family: 'SSShinb7';
-    font-style: normal;
-    font-weight: 100;
-    src: url("../assets/fonts/SSShinb7.ttf");
+  font-family: 'SSShinb7';
+  font-style: normal;
+  font-weight: 100;
+  src: url('../assets/fonts/SSShinb7.ttf');
 }
 @font-face {
-    font-family: 'tvN';
-    src: url("../assets/fonts/tvN 즐거운이야기 Medium.ttf");
+  font-family: 'tvN';
+  src: url('../assets/fonts/tvN 즐거운이야기 Medium.ttf');
 }
-
-.global-fnt {
-    font-family: 'SSShinb7';
+@font-face {
+  font-family: 'nanumsquare';
+  src: url('../assets/fonts/NanumSquareR.ttf');
 }
-._app {
-    font-family: 'SSShinb7';
+@font-face {
+  font-family: 'KOHIBaeum';
+  src: url('../assets/fonts/KOHIBaeum.ttf');
+}
+@font-face {
+  font-family: 'anakseo';
+  src: url('../assets/fonts/a낙서.ttf');
 }

@@ -1,22 +1,28 @@
+import type { AppProps } from 'next/app';
 import Head from 'next/head';
-import PropTypes from 'prop-types';
+import { elementType } from 'prop-types';
 import './_app.css';
 import 'antd/dist/antd.css';
-import { AppContext } from 'next/app';
+import { ThemeProvider } from 'styled-components';
 
-const NeipClova = ({ Component }: AppContext) => {
+import { GlobalStyle, theme } from 'themes';
+
+const NeipClova = ({ Component, pageProps }: AppProps) => {
   return (
     <>
       <Head>
         <title>당신의 MBTI는 무엇입니까? | 네잎클로바</title>
       </Head>
-      <Component />
+      <ThemeProvider theme={theme}>
+        <GlobalStyle />
+        <Component {...pageProps} />
+      </ThemeProvider>
     </>
   );
 };
 
 NeipClova.propTypes = {
-  Component: PropTypes.elementType.isRequired,
+  Component: elementType.isRequired,
 };
 
 export default NeipClova;

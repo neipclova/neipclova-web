@@ -1,16 +1,27 @@
 import 'antd/dist/antd.css';
-import { Row, Typography } from 'antd';
-import { FC } from 'react';
+import { Typography } from 'antd';
 import Image from 'next/image';
-import logo from '../../../../../assets/images/neipclova_logo.png'
-import tired from '../../../../../assets/images/직장인.png'
+import { FC } from 'react';
+import styled from 'styled-components';
+
+import tired from '../../../../../assets/images/직장인.png';
 
 type ISurveyHomeTitleModuleProps = {};
 
-export const SurveyHomeTitleModule: FC<ISurveyHomeTitleModuleProps> = () => {
+const Div = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-family: ${({ theme }) => theme.fonts.family.title};
+`;
 
-  const { Title } = Typography;
+const TypographyTitle = styled(Typography.Title)`
+  text-align: center;
+`;
+
+export const SurveyHomeTitleModule: FC<ISurveyHomeTitleModuleProps> = () => {
   return (
+<<<<<<< HEAD
     <>
 
       <Title level={4} style={{ textAlign: 'center' }}>
@@ -31,5 +42,13 @@ export const SurveyHomeTitleModule: FC<ISurveyHomeTitleModuleProps> = () => {
           <Image src={tired} width={200} height={200} ></Image>
       </div>
     </>
+=======
+    <Div>
+      <TypographyTitle level={4}>꽉 막히는 출근길!</TypographyTitle>
+      <TypographyTitle level={2}>나는 어떤 MBTI 유형일까요?</TypographyTitle>
+      <TypographyTitle level={1}>지옥의 출근길 탐험 Go!</TypographyTitle>
+      <Image src={tired} width={200} height={200} objectFit="contain"></Image>
+    </Div>
+>>>>>>> 260e1bafc89ec756b1885bb1aefee7a443f71464
   );
 };
