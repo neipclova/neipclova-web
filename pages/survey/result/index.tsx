@@ -15,7 +15,7 @@ const SurveyResultPage = () => {
       <Head>
         <title>검사 결과 | 네잎클로바</title>
       </Head>
-      <SurveyResultScreen />
+      <SurveyResultScreen result="abc" />
     </>
   );
 };

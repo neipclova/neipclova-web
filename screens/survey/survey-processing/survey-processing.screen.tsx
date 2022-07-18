@@ -1,6 +1,7 @@
 import { Space } from 'antd';
 import { useRouter } from 'next/router';
 import { FC, useEffect, useState } from 'react';
+import PathEnum from 'utils/paths';
 
 import { SurveyProcessingLayout } from '../../../components';
 
@@ -17,7 +18,7 @@ export const SurveyProcessingScreen: FC<ISurveyProcessingScreenProps> = () => {
   useEffect(() => {
     if (!currentOrder) {
       console.log('result');
-      router.push('/survey/result');
+      router.push(PathEnum.SURVEY_RESULT);
     }
   }, [currentOrder, type]);
 

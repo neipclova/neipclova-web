@@ -3,13 +3,14 @@ import { Button, Space } from 'antd';
 import Link from 'next/link';
 import { FC } from 'react';
 import styled from 'styled-components';
+import PathEnum from 'utils/paths';
 
 type ISurveyHomeDetailModuleProps = {};
 
 export const SurveyHomeDetailModule: FC<ISurveyHomeDetailModuleProps> = () => {
   return (
     <StyledSpace direction="vertical" align="center">
-      <Link href="/survey">
+      <Link href={PathEnum.SURVEY}>
         <a>
           <HoverButton type="text">지금 바로 시작하기</HoverButton>
         </a>
