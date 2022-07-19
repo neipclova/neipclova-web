@@ -13,7 +13,7 @@ export const SurveyHomeLayout: FC<ISurveyHomeLayoutProps> = ({ children }) => {
   return (
     <Layout className="global-fnt">
       <LayoutHeader>
-        <Typography.Title level={5}>네잎클로바&nbsp;</Typography.Title>
+        <Typography.Title level={3}>네잎클로바&nbsp;</Typography.Title>
         <Image src={logo} width="20px" height="20px" objectFit="contain"></Image>
       </LayoutHeader>
       <LayoutContent>{children}</LayoutContent>
@@ -31,7 +31,7 @@ const LayoutHeader = styled(Layout.Header)`
 const LayoutContent = styled(Layout.Content)`
   display: flex;
   justify-content: center;
-  padding: ${({ theme }) => theme.paddings.lg};
+  padding: ${({ theme }) => theme.paddings.base};
   height: 100vh;
   background: ${({ theme }) => `linear-gradient(${theme.colors.sky}, 50%, ${theme.colors.red})`};
 `;
