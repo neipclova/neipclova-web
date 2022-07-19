@@ -33,7 +33,5 @@ const LayoutContent = styled(Layout.Content)`
   justify-content: center;
   padding: ${({ theme }) => theme.paddings.lg};
   height: 100vh;
-  width: 100vw;
-  background: ${({ theme }) =>
-    `linear-gradient(${theme.colors.sky}, 50%, ${theme.colors.red}, ${theme.colors.dark_red})`};
+  background: ${({ theme }) => `linear-gradient(${theme.colors.sky}, 50%, ${theme.colors.red})`};
 `;

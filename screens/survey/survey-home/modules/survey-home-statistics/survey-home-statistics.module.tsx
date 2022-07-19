@@ -21,7 +21,7 @@ export const SurveyHomeStatisticsModule: FC<ISurveyHomeStatisticsModuleProps> = 
   }, [numVisitors]);
 
   return (
-    <TypographyTitle level={5}>
+    <TypographyTitle level={2}>
       총 <span style={{ color: theme.colors.yellow }}>{numVisitors.toLocaleString()}</span>
       명이 방문했어요!
     </TypographyTitle>

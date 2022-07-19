@@ -33,6 +33,7 @@ const HoverButton = styled(Button)`
   font-size: ${({ theme }) => theme.fonts.size.lg};
   height: 100%;
   border: none;
+  font-size: ${({ theme }) => theme.fonts.size.xl};
   :hover {
     background-color: white;
   }
@@ -43,6 +44,7 @@ const HoverButtonSmall = styled(Button)`
   color: ${({ theme }) => theme.colors.white};
   background: none;
   height: 100%;
+  font-size: ${({ theme }) => theme.fonts.size.lg};
   :hover {
     color: ${({ theme }) => theme.colors.white};
     border: 1px solid white;

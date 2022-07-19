@@ -9,7 +9,13 @@ ${reset}
     padding: ${theme.paddings.base};
   }
   .global-fnt {
-    font-family: 'anakseo';
+    font-family: ${theme.fonts.family.base};
+    font-size: ${theme.fonts.size.xl}
+  }
+  .global-footer {
+    background: ${theme.colors.white};
+    color : ${theme.colors.black};
+    text-align: center;
   }
   button {
     background: none;
