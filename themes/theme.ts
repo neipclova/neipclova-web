@@ -37,15 +37,15 @@ const paddings = {
 
 export const fonts = {
   family: {
-    base: `'nanumsquare', sans-serif`,
+    base: `'암스테르담', sans-serif`,
     title: `'SSShinb7', serif`,
   },
   size: {
     sm: '0.4rem',
     base: '0.8rem',
-    lg: '1rem',
+    lg: '1.5rem',
     xl: '2rem',
-    title: '4rem',
+    title: '3rem',
   },
   weight: {
     light: 100,

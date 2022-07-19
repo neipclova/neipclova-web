@@ -1,31 +1,33 @@
-import { Button, Typography } from 'antd';
-import { FC } from 'react';
 import { ShareAltOutlined } from '@ant-design/icons';
-import React, {useRef} from 'react';
+import { Button } from 'antd';
+import { FC } from 'react';
+import styled from 'styled-components';
 
-import Image from 'next/image';
-import KAKAO from './kakao.jpeg';
-
-
+// import KAKAO from './kakao.jpeg';
 
 type ISurveyResultShareComponentProp = {};
 
 export const SurveyResultShareComponent: FC<ISurveyResultShareComponentProp> = () => {
-  const { Title } = Typography;
   return (
-    <>
-    <div style={{display: 'flex', justifyContent: 'center' }}>
-      <Button type="text" shape="round" size="large" color='white' icon={<ShareAltOutlined />}>
-        내 결과 공유하기
-      </Button>
-        <div>
-          <Image src={KAKAO} width={40} height={40} alt="kakao"></Image>
-        </div>
-    </div>
-    </>
+    <HoverButton type="text" icon={<ShareAltOutlined />}>
+      카카오톡 공유하기
+    </HoverButton>
+    // <Image src={KAKAO} width={40} height={40} alt="kakao"></Image>
   );
 };
 
+const HoverButton = styled(Button)`
+  color: ${({ theme }) => theme.colors.black};
+  border: 2px solid black;
+  height: 100%;
+  font-size: ${({ theme }) => theme.fonts.size.lg};
+  font-weight: ${({ theme }) => theme.fonts.weight.bold};
+  margin-top: ${({ theme }) => theme.margins.sm};
+  :hover {
+    color: ${({ theme }) => theme.colors.white};
+    border: 1px solid white;
+  }
+`;
 
 // const url = encodeURI(window.location.href);
 
@@ -33,7 +35,6 @@ export const SurveyResultShareComponent: FC<ISurveyResultShareComponentProp> = (
 // const shareFacebook = () => {
 //   window.open("http://www.facebook.com/sharer/sharer.php?u=" + url);
 // }
-
 
 // // Twitter
 // const shareTwitter = () => {

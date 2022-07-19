@@ -6,7 +6,7 @@ import PathEnum from 'utils/paths';
 import { SurveyProcessingLayout } from '../../../components';
 
 import { SurveyProcessingAnswerComponent, SurveyProcessingQuestionComponent } from './modules';
-import { setBackground } from './survey-processing.method';
+// import { setBackground } from './survey-processing.method';
 
 type ISurveyProcessingScreenProps = {};
 
@@ -23,7 +23,7 @@ export const SurveyProcessingScreen: FC<ISurveyProcessingScreenProps> = () => {
   }, [currentOrder, type]);
 
   return (
-    <SurveyProcessingLayout background={setBackground(currentOrder)}>
+    <SurveyProcessingLayout>
       {currentOrder && (
         <Space
           direction="vertical"

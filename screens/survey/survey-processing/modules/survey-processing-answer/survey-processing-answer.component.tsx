@@ -1,6 +1,7 @@
 import { Row, Space } from 'antd';
 import { FC } from 'react';
 import styled from 'styled-components';
+
 import * as data from './survey-processing-answer.data';
 
 type ISurveyProcessingAnswerComponentProp = {
@@ -13,6 +14,7 @@ const HoverSpace = styled(Space)`
     cursor: pointer;
   }
 `;
+
 export const SurveyProcessingAnswerComponent: FC<ISurveyProcessingAnswerComponentProp> = ({
   currentOrder,
   setCurrentOrder,

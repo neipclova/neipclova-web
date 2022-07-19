@@ -7,7 +7,12 @@ import { ThemeProvider } from 'styled-components';
 
 import { GlobalStyle, theme } from 'themes';
 
+import { Footer } from 'antd/lib/layout/layout';
+
 const NeipClova = ({ Component, pageProps }: AppProps) => {
+  const thisYear = () => {
+    return new Date().getFullYear();
+  };
   return (
     <>
       <Head>
@@ -17,6 +22,9 @@ const NeipClova = ({ Component, pageProps }: AppProps) => {
         <GlobalStyle />
         <Component {...pageProps} />
       </ThemeProvider>
+      <Footer className="global-footer">
+        Copyright &copy; <span>{thisYear()}</span>
+      </Footer>
     </>
   );
 };

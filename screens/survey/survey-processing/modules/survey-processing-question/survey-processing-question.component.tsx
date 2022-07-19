@@ -1,5 +1,6 @@
 import { Typography } from 'antd';
 import { FC } from 'react';
+
 import * as data from './survey-processing-question.data';
 
 type ISurveyProcessingQuestionComponentProp = {
@@ -17,7 +18,7 @@ export const SurveyProcessingQuestionComponent: FC<ISurveyProcessingQuestionComp
 }) => {
   return (
     <>
-      <Title level={3} style={{ color: 'white' }}>
+      <Title style={{ color: 'white' }}>
         <div
           dangerouslySetInnerHTML={{ __html: data.question_data[currentOrder].question[type] }}
         />
