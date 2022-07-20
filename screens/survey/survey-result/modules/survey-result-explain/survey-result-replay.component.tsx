@@ -21,14 +21,14 @@ export const SurveyResultReplayComponent: FC<ISurveyResultReplayComponentProp> =
 };
 
 const HoverButton = styled(Button)`
-  color: ${({ theme }) => theme.colors.black};
-  border: 2px solid black;
+  color: ${({ theme }) => theme.colors.white};
+  border: 2px solid white;
   height: 100%;
   font-size: ${({ theme }) => theme.fonts.size.lg};
   font-weight: ${({ theme }) => theme.fonts.weight.bold};
   margin-top: ${({ theme }) => theme.margins.sm};
   :hover {
-    color: ${({ theme }) => theme.colors.white};
-    border: 1px solid white;
+    color: ${({ theme }) => theme.colors.yellow};
+    border: 1px solid yellow;
   }
 `;

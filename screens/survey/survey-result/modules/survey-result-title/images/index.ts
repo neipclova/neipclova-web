@@ -9,3 +9,4 @@ export * from './INFP.png';
 export * from './INTJ.png';
 export * from './ISFJ.ISFP.ISTJ.png';
 export * from './INFP_RESULT.png';
+export * from './test1.png';

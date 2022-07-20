@@ -33,5 +33,7 @@ const LayoutContent = styled(Layout.Content)`
   justify-content: center;
   align-items: center;
   height: 100%;
-  background: #ad997a;
+  background: linear-gradient(#170443, #020210, #1C063C);
 `;
+// background: #ad997a;
+// background: linear-gradient(#0d6efd, #2149a6, #1b1f69, #493080, #b96c87, #9f6cb9, #0d6efd);
