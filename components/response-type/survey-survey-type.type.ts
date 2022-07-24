@@ -1,15 +1,20 @@
-type IQuestionData = {
+export enum enum_visitor_type {
+  STUDENT = 'student',
+  WORKER = 'worker',
+}
+
+export type IQuestionData = {
   id: number;
   questionOrder: number;
   question: {
-    student: string;
-    worker: string;
+    [enum_visitor_type.STUDENT]: string;
+    [enum_visitor_type.WORKER]: string;
   };
   imageUri: string;
   surveyType: string;
 };
 
-type IOptionData = {
+export type IOptionData = {
   id: number;
   optionOrder: number;
   option: string;
