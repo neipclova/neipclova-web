@@ -1,5 +1,5 @@
 const PathEnum = {
-  API_URL: 'http://192.168.35.13:8080', // api url
+  API_URL: 'http://localhost:8080', // api url
   SURVEY: {
     pathname: '/survey',
   },
