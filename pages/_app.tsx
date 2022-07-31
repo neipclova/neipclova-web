@@ -9,10 +9,17 @@ import { GlobalStyle, theme } from 'themes';
 
 import { Footer } from 'antd/lib/layout/layout';
 
+declare global {
+  interface Window {
+    Kakao: any;
+  }
+}
+
 const NeipClova = ({ Component, pageProps }: AppProps) => {
   const thisYear = () => {
     return new Date().getFullYear();
   };
+
   return (
     <>
       <Head>
