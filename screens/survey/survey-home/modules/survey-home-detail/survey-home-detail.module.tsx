@@ -3,6 +3,7 @@ import { Button, Space } from 'antd';
 import Link from 'next/link';
 import { FC } from 'react';
 import styled from 'styled-components';
+
 import PathEnum from 'utils/paths';
 
 type ISurveyHomeDetailModuleProps = {};

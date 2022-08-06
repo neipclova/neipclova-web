@@ -1,23 +1,47 @@
 import { Space } from 'antd';
 import { useRouter } from 'next/router';
 import { FC, useEffect, useState } from 'react';
+
 import PathEnum from 'utils/paths';
 
-import { SurveyProcessingLayout } from '../../../components';
+import {
+  enum_visitor_type,
+  IOptionData,
+  ISurveyData,
+  SurveyProcessingLayout,
+} from '../../../components';
 
 import { SurveyProcessingAnswerComponent, SurveyProcessingQuestionComponent } from './modules';
-// import { setBackground } from './survey-processing.method';
 
-type ISurveyProcessingScreenProps = {};
+type ISurveyProcessingScreenProps = {
+  surveyData: ISurveyData;
+};
 
-export const SurveyProcessingScreen: FC<ISurveyProcessingScreenProps> = () => {
+export const SurveyProcessingScreen: FC<ISurveyProcessingScreenProps> = ({ surveyData }) => {
   const router = useRouter();
   const [currentOrder, setCurrentOrder] = useState(1);
-  const [type, setType] = useState('student');
-
+  const [type, setType] = useState<enum_visitor_type>(enum_visitor_type.STUDENT);
+  const [question, setQuestion] = useState<string>(
+    surveyData.questions.find((question) => question.questionOrder === currentOrder)?.question[
+      type
+    ] ?? ''
+  );
+  const [options, setOptions] = useState<IOptionData[]>(
+    surveyData.options.filter((option) => option.question.questionOrder === currentOrder)
+  );
   useEffect(() => {
+    setQuestion(
+      surveyData.questions.find((question) => question.questionOrder === currentOrder)?.question[
+        type
+      ] ?? ''
+    );
+    console.log(
+      surveyData.options.filter((option) => option.question.questionOrder === currentOrder)
+    );
+    setOptions(
+      surveyData.options.filter((option) => option.question.questionOrder === currentOrder)
+    );
     if (!currentOrder) {
-      console.log('result');
       router.push(PathEnum.SURVEY_RESULT);
     }
   }, [currentOrder, type]);
@@ -34,14 +58,11 @@ export const SurveyProcessingScreen: FC<ISurveyProcessingScreenProps> = () => {
             wordBreak: 'keep-all',
           }}
         >
-          <SurveyProcessingQuestionComponent
-            setCurrentOrder={setCurrentOrder}
-            currentOrder={currentOrder}
-            type={type}
-          />
+          <SurveyProcessingQuestionComponent question={question} />
           <SurveyProcessingAnswerComponent
+            setType={setType}
             setCurrentOrder={setCurrentOrder}
-            currentOrder={currentOrder}
+            options={options}
           />
         </Space>
       )}
