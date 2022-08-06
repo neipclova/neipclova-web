@@ -10,7 +10,7 @@ type ISurveyResultReplayComponentProp = {};
 
 export const SurveyResultReplayComponent: FC<ISurveyResultReplayComponentProp> = () => {
   return (
-    <Link href={PathEnum.HOME}>
+    <Link href={{ pathname: PathEnum.HOME }}>
       <a>
         <HoverButton type="text" icon={<ReloadOutlined />}>
           테스트 다시하기

@@ -24,30 +24,21 @@ export const SurveyProcessingAnswerComponent: FC<ISurveyProcessingAnswerComponen
   visitorSurveyResultId,
   options,
 }) => {
-  const saveUserAnswer = async (currentOrder: number, item: any) => {
+  const saveUserAnswer = async (item: IOptionData) => {
+    console.log('visitorsurveyreusltid : ', visitorSurveyResultId);
     const response = await axios.post('http://localhost:8080/answer', {
-      visitorSurveyResultId: visitorSurveyResultId,
-      questionId: currentOrder,
-      optionId: item.order,
+      visitor_survey_result_id: visitorSurveyResultId,
+      question_id: item.question.id,
+      option_id: item.id,
     });
     console.log(response);
-
-    // // 테스트코드
-    // const response = {
-    //   visitor_id: visitorId,
-    //   question: currentOrder,
-    //   answer: item.order,
-    //   created_at: "yyyy-MM-dd HH:mm:ss"
-    // };
-    // console.log(response);
-    // // 테스트코드
   };
 
   if (options.length === 0) {
     console.log('No option error');
   }
   const handleClickButton = (item: IOptionData) => {
-    saveUserAnswer(item.question.questionOrder, item);
+    saveUserAnswer(item);
     if (item.question.questionOrder === 1) {
       switch (item.optionOrder) {
         case 1: {

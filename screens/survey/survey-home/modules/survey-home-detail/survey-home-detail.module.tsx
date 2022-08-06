@@ -1,11 +1,12 @@
 import { LinkOutlined } from '@ant-design/icons';
 import { Button, Space } from 'antd';
-import axios from 'axios';
 import Link from 'next/link';
 import { FC, useEffect, useState } from 'react';
 import styled from 'styled-components';
 
+import { IStartSurveyTypePostRequestData, IStartSurveyTypePostResponseData } from 'components';
 import PathEnum from 'utils/paths';
+import Api from 'utils/util';
 
 import { getUserAgent } from './survey-home-detail.method';
 
@@ -17,45 +18,19 @@ export const SurveyHomeDetailModule: FC<ISurveyHomeDetailModuleProps> = () => {
 
   const saveVisitorInfo = async () => {
     const userAgentResponse = await getUserAgent();
+    const requestBody: IStartSurveyTypePostRequestData = {
+      ipAddress: '127.0.0.0',
+      agentOs: userAgentResponse.os,
+      agentBrowser: userAgentResponse.browser,
+      accessUrl: 'https://test',
+    };
+    const response = await Api.post<IStartSurveyTypePostResponseData>(PathEnum.START, requestBody);
 
-    const response = await axios.post<any, { visitorId: number; visitorSurveyResultId: number }>(
-      'http://localhost:8080/start/CLUB',
-      {
-        ipAddress: '127.0.0.0',
-        agentOs: userAgentResponse.os,
-        agentBrowser: userAgentResponse.browser,
-        accessUrl: 'https://test',
-      }
-    );
-
-    console.log(response);
-    setVisitorId(response.visitorId);
-    setVisitorSurveyResultId(response.visitorSurveyResultId);
-
-    // // 테스트 코드
-    // const response = {
-    //   ipAddress: "127.0.0.0",
-    //   agentOs: userAgentResponse.os,
-    //   agentBrowser: userAgentResponse.browser,
-    //   accessUrl: "https://test"
-    // };
-    // console.log('response');
-    // const expected_reponse = { visitorId: 12345678, visitorSurveyResultId: 2222 } // visitor_id
-    // console.log(expected_reponse);
-    // console.log(visitorId);
-    // setVisitorId(expected_reponse.visitorId);
-    // console.log(visitorId);
-    // setVisitorSurveyResultId(expected_reponse.visitorSurveyResultId);
-    // // 테스트 코드
+    setVisitorId(response.data.visitor_id);
+    setVisitorSurveyResultId(response.data.visitor_survey_result_id);
   };
 
-  useEffect(() => {
-    // // 테스트 코드
-    // console.log("업데이트 될 때 실행된다")
-    // console.log(visitorId)
-    // console.log(visitorSurveyResultId)
-    // // 테스트 코드
-  }, [visitorId, visitorSurveyResultId]);
+  useEffect(() => {}, [visitorId, visitorSurveyResultId]);
 
   const handleStartButtonClick = () => {
     saveVisitorInfo();
@@ -63,7 +38,7 @@ export const SurveyHomeDetailModule: FC<ISurveyHomeDetailModuleProps> = () => {
 
   return (
     <StyledSpace direction="vertical" align="center">
-      <Link href={{ query: { visitorId: visitorId }, ...PathEnum.SURVEY }}>
+      <Link href={{ query: { visitorId: visitorId }, pathname: PathEnum.SURVEY }}>
         <a>
           <HoverButton
             type="text"
