@@ -13,6 +13,12 @@ const Div = styled.div`
   flex-direction: column;
   justify-content: center;
   font-family: ${({ theme }) => theme.fonts.family.title};
+  .title {
+    font-size: ${({ theme }) => theme.fonts.size.xl};
+  }
+  .xl {
+    font-size: ${({ theme }) => theme.fonts.size.lg};
+  }
 `;
 
 const TypographyTitle = styled(Typography.Title)`
@@ -22,10 +28,10 @@ const TypographyTitle = styled(Typography.Title)`
 export const SurveyHomeTitleModule: FC<ISurveyHomeTitleModuleProps> = () => {
   return (
     <Div>
-      <TypographyTitle level={4}>꽉 막히는 출근길!</TypographyTitle>
-      <TypographyTitle level={2}>나는 어떤 MBTI 유형일까요?</TypographyTitle>
-      <TypographyTitle level={1}>지옥의 출근길 탐험 Go!</TypographyTitle>
-      <Image src={tired} width={200} height={200} objectFit="contain"></Image>
+      <TypographyTitle className="xl">꽉 막히는 출근길!</TypographyTitle>
+      <TypographyTitle className="title">나는 어떤 MBTI 유형일까요?</TypographyTitle>
+      <TypographyTitle className="title">지옥의 출근길 탐험 Go!</TypographyTitle>
+      <Image src={tired} width={250} height={250} objectFit="contain"></Image>
     </Div>
   );
 };

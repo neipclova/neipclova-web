@@ -1,21 +1,46 @@
 import { Space } from 'antd';
-import { NextPage } from 'next';
+import { FC, useEffect } from 'react';
+import styled from 'styled-components';
+
+import { theme } from 'themes';
+
 import { SurveyResultLayout } from '../../../components';
-import { SurveyResultExplainComponent, SurveyResultTitleComponent } from './components';
+
+import {
+  SurveyResultReplayComponent,
+  SurveyResultSeeallResultComponent,
+  SurveyResultShareComponent,
+  SurveyResultTitleComponent,
+} from './modules';
 
 type ISurveyResultScreenProps = {
   result: string;
 };
 
-export const SurveyResultScreen: NextPage<ISurveyResultScreenProps> = ({ result }) => {
+export const SurveyResultScreen: FC<ISurveyResultScreenProps> = ({ result }) => {
+  // TODO: remove this
+  // Api.get(`${PathEnum.API_URL}/survey`).then((response) => {
+  //   console.log(response);
+  // }
+  //  );
+  useEffect(() => {
+    console.log(theme.flex);
+  });
   return (
     <SurveyResultLayout>
-      <div style={{ display: 'flex', padding: 20, justifyContent: 'center' }}>
-        <Space direction="vertical">
-          <SurveyResultTitleComponent />
-          <SurveyResultExplainComponent />
-        </Space>
-      </div>
+      {/* <Div> */}
+      <StyledSpace direction="vertical" align="center">
+        <SurveyResultTitleComponent />
+        <SurveyResultSeeallResultComponent />
+        <SurveyResultReplayComponent />
+        <SurveyResultShareComponent />
+      </StyledSpace>
+      {/* </Div> */}
     </SurveyResultLayout>
   );
 };
+
+const StyledSpace = styled(Space)`
+  display: flex;
+  padding: ${({ theme }) => theme.paddings.base};
+`;

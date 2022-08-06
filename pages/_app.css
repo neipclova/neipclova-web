@@ -20,3 +20,12 @@
   font-family: 'anakseo';
   src: url('../assets/fonts/a낙서.ttf');
 }
+@font-face {
+  font-family: '느릿느릿체';
+  src: url('../assets/fonts/느릿느릿체.ttf');
+}
+
+@font-face {
+  font-family: '암스테르담';
+  src: url('../assets/fonts/암스테르담.ttf');
+}

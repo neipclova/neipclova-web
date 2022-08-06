@@ -2,26 +2,31 @@ import { LinkOutlined } from '@ant-design/icons';
 import { Button, Space } from 'antd';
 import axios from 'axios';
 import Link from 'next/link';
-import React, { FC, useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import styled from 'styled-components';
+
+import PathEnum from 'utils/paths';
+
 import { getUserAgent } from './survey-home-detail.method';
 
 type ISurveyHomeDetailModuleProps = {};
 
 export const SurveyHomeDetailModule: FC<ISurveyHomeDetailModuleProps> = () => {
-
   const [visitorId, setVisitorId] = useState(0);
   const [visitorSurveyResultId, setVisitorSurveyResultId] = useState(0);
 
   const saveVisitorInfo = async () => {
     const userAgentResponse = await getUserAgent();
 
-    const response = await axios.post<any, { visitorId: number; visitorSurveyResultId: number; }>('http://localhost:8080/start/CLUB', {
-      ipAddress: "127.0.0.0",
-      agentOs: userAgentResponse.os,
-      agentBrowser: userAgentResponse.browser,
-      accessUrl: "https://test"
-    });
+    const response = await axios.post<any, { visitorId: number; visitorSurveyResultId: number }>(
+      'http://localhost:8080/start/CLUB',
+      {
+        ipAddress: '127.0.0.0',
+        agentOs: userAgentResponse.os,
+        agentBrowser: userAgentResponse.browser,
+        accessUrl: 'https://test',
+      }
+    );
 
     console.log(response);
     setVisitorId(response.visitorId);
@@ -42,7 +47,7 @@ export const SurveyHomeDetailModule: FC<ISurveyHomeDetailModuleProps> = () => {
     // console.log(visitorId);
     // setVisitorSurveyResultId(expected_reponse.visitorSurveyResultId);
     // // 테스트 코드
-  }
+  };
 
   useEffect(() => {
     // // 테스트 코드
@@ -54,13 +59,20 @@ export const SurveyHomeDetailModule: FC<ISurveyHomeDetailModuleProps> = () => {
 
   const handleStartButtonClick = () => {
     saveVisitorInfo();
-  }
+  };
 
   return (
     <StyledSpace direction="vertical" align="center">
-      <Link href={{ pathname: "/survey", query: { visitorId: visitorId } }}>
+      <Link href={{ query: { visitorId: visitorId }, ...PathEnum.SURVEY }}>
         <a>
-          <HoverButton type="text" onClick={() => { handleStartButtonClick() }}>지금 바로 시작하기</HoverButton>
+          <HoverButton
+            type="text"
+            onClick={() => {
+              handleStartButtonClick();
+            }}
+          >
+            지금 바로 시작하기
+          </HoverButton>
         </a>
       </Link>
       <HoverButtonSmall type="text" icon={<LinkOutlined />}>
@@ -81,6 +93,7 @@ const HoverButton = styled(Button)`
   font-size: ${({ theme }) => theme.fonts.size.lg};
   height: 100%;
   border: none;
+  font-size: ${({ theme }) => theme.fonts.size.xl};
   :hover {
     background-color: white;
   }
@@ -91,6 +104,7 @@ const HoverButtonSmall = styled(Button)`
   color: ${({ theme }) => theme.colors.white};
   background: none;
   height: 100%;
+  font-size: ${({ theme }) => theme.fonts.size.lg};
   :hover {
     color: ${({ theme }) => theme.colors.white};
     border: 1px solid white;

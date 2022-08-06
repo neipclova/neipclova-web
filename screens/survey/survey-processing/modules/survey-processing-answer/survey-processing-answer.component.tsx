@@ -1,12 +1,14 @@
 import { Row, Space } from 'antd';
 import axios from 'axios';
-import { FC } from 'react';
+import { Dispatch, FC, SetStateAction } from 'react';
 import styled from 'styled-components';
-import * as data from './survey-processing-answer.data';
+
+import { enum_visitor_type, IOptionData } from 'components';
 
 type ISurveyProcessingAnswerComponentProp = {
-  currentOrder: number;
-  setCurrentOrder: any;
+  setType: Dispatch<SetStateAction<enum_visitor_type>>;
+  setCurrentOrder: Dispatch<SetStateAction<number>>;
+  options: IOptionData[];
   visitorSurveyResultId: number;
 };
 const HoverSpace = styled(Space)`
@@ -15,16 +17,18 @@ const HoverSpace = styled(Space)`
     cursor: pointer;
   }
 `;
+
 export const SurveyProcessingAnswerComponent: FC<ISurveyProcessingAnswerComponentProp> = ({
-  currentOrder,
+  setType,
   setCurrentOrder,
-  visitorSurveyResultId
+  visitorSurveyResultId,
+  options,
 }) => {
   const saveUserAnswer = async (currentOrder: number, item: any) => {
     const response = await axios.post('http://localhost:8080/answer', {
       visitorSurveyResultId: visitorSurveyResultId,
       questionId: currentOrder,
-      optionId: item.order
+      optionId: item.order,
     });
     console.log(response);
 
@@ -37,18 +41,32 @@ export const SurveyProcessingAnswerComponent: FC<ISurveyProcessingAnswerComponen
     // };
     // console.log(response);
     // // 테스트코드
-  }
-
-  const handleClickButton = (item: any) => {
-    saveUserAnswer(currentOrder, item);
-    setCurrentOrder(item.next_question_order);
   };
 
-  const arrangeItemByRow = (currentOrder: number) => (
-    <Row key={data.question_answer_data[currentOrder].length} gutter={[16, 24]}>
-      {data.question_answer_data[currentOrder].map((item) => (
+  if (options.length === 0) {
+    console.log('No option error');
+  }
+  const handleClickButton = (item: IOptionData) => {
+    saveUserAnswer(item.question.questionOrder, item);
+    if (item.question.questionOrder === 1) {
+      switch (item.optionOrder) {
+        case 1: {
+          setType(enum_visitor_type.STUDENT);
+          break;
+        }
+        case 2: {
+          setType(enum_visitor_type.WORKER);
+          break;
+        }
+      }
+    }
+    setCurrentOrder(item.nextQuestion?.questionOrder);
+  };
+  const arrangeItemByRow = (options: IOptionData[]) => (
+    <Row key={options.length} gutter={[16, 24]}>
+      {options.map((item) => (
         <HoverSpace
-          key={item.order}
+          key={item.optionOrder}
           size="large"
           style={{
             display: 'flex',
@@ -70,5 +88,5 @@ export const SurveyProcessingAnswerComponent: FC<ISurveyProcessingAnswerComponen
     </Row>
   );
 
-  return <>{arrangeItemByRow(currentOrder)}</>;
+  return <>{arrangeItemByRow(options)}</>;
 };

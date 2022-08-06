@@ -1,37 +1,63 @@
 import { Space } from 'antd';
+import axios from 'axios';
+import { useRouter } from 'next/router';
 import { FC, useEffect, useState } from 'react';
 
-import { SurveyProcessingLayout } from '../../../components';
+import PathEnum from 'utils/paths';
+
+import {
+  enum_visitor_type,
+  IOptionData,
+  ISurveyData,
+  SurveyProcessingLayout,
+} from '../../../components';
 
 import { SurveyProcessingAnswerComponent, SurveyProcessingQuestionComponent } from './modules';
-import { setBackground } from './survey-processing.method';
-import { useRouter, withRouter } from 'next/router';
-import axios from 'axios';
 
-type ISurveyProcessingScreenProps = {};
+type ISurveyProcessingScreenProps = {
+  surveyData: ISurveyData;
+};
 
-export const SurveyProcessingScreen: FC<ISurveyProcessingScreenProps> = () => {
+export const SurveyProcessingScreen: FC<ISurveyProcessingScreenProps> = ({ surveyData }) => {
   const router = useRouter();
   const [currentOrder, setCurrentOrder] = useState(1);
-  const [type, setType] = useState('student');
-  const visitorSurveyResultId = Number(router.query.visitorSurveyResultId)
+  const visitorSurveyResultId = Number(router.query.visitorSurveyResultId);
 
+  const [type, setType] = useState<enum_visitor_type>(enum_visitor_type.STUDENT);
+  const [question, setQuestion] = useState<string>(
+    surveyData.questions.find((question) => question.questionOrder === currentOrder)?.question[
+      type
+    ] ?? ''
+  );
+  const [options, setOptions] = useState<IOptionData[]>(
+    surveyData.options.filter((option) => option.question.questionOrder === currentOrder)
+  );
   useEffect(() => {
+    setQuestion(
+      surveyData.questions.find((question) => question.questionOrder === currentOrder)?.question[
+        type
+      ] ?? ''
+    );
+    console.log(
+      surveyData.options.filter((option) => option.question.questionOrder === currentOrder)
+    );
+    setOptions(
+      surveyData.options.filter((option) => option.question.questionOrder === currentOrder)
+    );
     if (!currentOrder) {
       console.log('result');
 
       // result api가 여기서 호출되어야 하나..?
-      const response = axios.post<any, { visitorId: number; }>('http://localhost:8080/result/CLUB', {
+      const response = axios.post<any, { visitorId: number }>('http://localhost:8080/result/CLUB', {
         visitorSurveyResultId: visitorSurveyResultId,
       });
       console.log(response); // response : { result: string(enum)}
-
-      router.push('/survey/result');
+      router.push(PathEnum.SURVEY_RESULT);
     }
   }, [currentOrder, type]);
 
   return (
-    <SurveyProcessingLayout background={setBackground(currentOrder)}>
+    <SurveyProcessingLayout>
       {currentOrder && (
         <Space
           direction="vertical"
@@ -42,15 +68,12 @@ export const SurveyProcessingScreen: FC<ISurveyProcessingScreenProps> = () => {
             wordBreak: 'keep-all',
           }}
         >
-          <SurveyProcessingQuestionComponent
-            setCurrentOrder={setCurrentOrder}
-            currentOrder={currentOrder}
-            type={type}
-          />
+          <SurveyProcessingQuestionComponent question={question} />
           <SurveyProcessingAnswerComponent
+            setType={setType}
             setCurrentOrder={setCurrentOrder}
-            currentOrder={currentOrder}
             visitorSurveyResultId={visitorSurveyResultId}
+            options={options}
           />
         </Space>
       )}
