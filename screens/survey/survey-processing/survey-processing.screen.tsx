@@ -2,14 +2,9 @@ import { Space } from 'antd';
 import { useRouter } from 'next/router';
 import { FC, useEffect, useState } from 'react';
 
-import PathEnum from 'utils/paths';
-import Api from 'utils/util';
-
 import {
   enum_visitor_type,
   IOptionData,
-  IResultSurveyTypePostRequestData,
-  IResultSurveyTypePostResponseData,
   ISurveyData,
   SurveyProcessingLayout,
 } from '../../../components';
@@ -23,7 +18,9 @@ type ISurveyProcessingScreenProps = {
 export const SurveyProcessingScreen: FC<ISurveyProcessingScreenProps> = ({ surveyData }) => {
   const router = useRouter();
   const [currentOrder, setCurrentOrder] = useState(1);
-  const [visitorSurveyResultId, setVisitorSurveyResultId] = useState<number>(-1);
+  const query = router.query;
+
+  const { visitor_survey_result_id: visitorSurveyResultId } = router.query;
   const [type, setType] = useState<enum_visitor_type>(enum_visitor_type.STUDENT);
   const [question, setQuestion] = useState<string>(
     surveyData.questions.find((question) => question.questionOrder === currentOrder)?.question[
@@ -33,6 +30,7 @@ export const SurveyProcessingScreen: FC<ISurveyProcessingScreenProps> = ({ surve
   const [options, setOptions] = useState<IOptionData[]>(
     surveyData.options.filter((option) => option.question.questionOrder === currentOrder)
   );
+
   useEffect(() => {
     setQuestion(
       surveyData.questions.find((question) => question.questionOrder === currentOrder)?.question[
@@ -42,14 +40,6 @@ export const SurveyProcessingScreen: FC<ISurveyProcessingScreenProps> = ({ surve
     setOptions(
       surveyData.options.filter((option) => option.question.questionOrder === currentOrder)
     );
-    if (!currentOrder) {
-      // result api가 여기서 호출되어야 하나..?
-      const request: IResultSurveyTypePostRequestData = {
-        visitor_survey_result_id: visitorSurveyResultId,
-      };
-      const response = Api.post<IResultSurveyTypePostResponseData>(PathEnum.SURVEY_RESULT);
-      router.push(PathEnum.SURVEY_RESULT);
-    }
   }, [currentOrder, type]);
 
   return (
@@ -68,7 +58,7 @@ export const SurveyProcessingScreen: FC<ISurveyProcessingScreenProps> = ({ surve
           <SurveyProcessingAnswerComponent
             setType={setType}
             setCurrentOrder={setCurrentOrder}
-            visitorSurveyResultId={visitorSurveyResultId}
+            visitorSurveyResultId={Number(visitorSurveyResultId)}
             options={options}
           />
         </Space>

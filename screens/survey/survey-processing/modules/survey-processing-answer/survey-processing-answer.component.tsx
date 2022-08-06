@@ -1,9 +1,16 @@
 import { Row, Space } from 'antd';
-import axios from 'axios';
+import { useRouter } from 'next/router';
 import { Dispatch, FC, SetStateAction } from 'react';
 import styled from 'styled-components';
 
-import { enum_visitor_type, IOptionData } from 'components';
+import {
+  enum_visitor_type,
+  IAnswerRequestData,
+  IOptionData,
+  IResultSurveyTypePostResponseData,
+} from 'components';
+import { PathEnum, SURVEY_TYPE } from 'utils';
+import Api from 'utils/util';
 
 type ISurveyProcessingAnswerComponentProp = {
   setType: Dispatch<SetStateAction<enum_visitor_type>>;
@@ -24,20 +31,33 @@ export const SurveyProcessingAnswerComponent: FC<ISurveyProcessingAnswerComponen
   visitorSurveyResultId,
   options,
 }) => {
-  const saveUserAnswer = async (item: IOptionData) => {
-    console.log('visitorsurveyreusltid : ', visitorSurveyResultId);
-    const response = await axios.post('http://localhost:8080/answer', {
+  const router = useRouter();
+
+  const saveUserAnswer = (item: IOptionData) => {
+    const request: IAnswerRequestData = {
       visitor_survey_result_id: visitorSurveyResultId,
       question_id: item.question.id,
       option_id: item.id,
-    });
-    console.log(response);
+    };
+    Api.post('/answer', request);
   };
 
+  const postResult = async (visitor_survey_result_id: number) => {
+    const request = {
+      visitor_survey_result_id,
+    };
+    const response = await Api.post<IResultSurveyTypePostResponseData>(
+      `/result/${SURVEY_TYPE}`,
+      null,
+      { params: request }
+    );
+    console.log('Response', response.data);
+    return response.data.result;
+  };
   if (options.length === 0) {
     console.log('No option error');
   }
-  const handleClickButton = (item: IOptionData) => {
+  const handleClickButton = async (item: IOptionData) => {
     saveUserAnswer(item);
     if (item.question.questionOrder === 1) {
       switch (item.optionOrder) {
@@ -50,6 +70,10 @@ export const SurveyProcessingAnswerComponent: FC<ISurveyProcessingAnswerComponen
           break;
         }
       }
+    }
+    if (!item.nextQuestion) {
+      const result = await postResult(Number(visitorSurveyResultId));
+      router.push(`${PathEnum.SURVEY_RESULT}?result=${result}`);
     }
     setCurrentOrder(item.nextQuestion?.questionOrder);
   };

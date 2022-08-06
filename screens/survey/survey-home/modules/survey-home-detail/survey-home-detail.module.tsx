@@ -1,11 +1,11 @@
 import { LinkOutlined } from '@ant-design/icons';
 import { Button, Space } from 'antd';
-import Link from 'next/link';
-import { FC, useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
+import { FC } from 'react';
 import styled from 'styled-components';
 
 import { IStartSurveyTypePostRequestData, IStartSurveyTypePostResponseData } from 'components';
-import PathEnum from 'utils/paths';
+import { PathEnum, SURVEY_TYPE } from 'utils/paths';
 import Api from 'utils/util';
 
 import { getUserAgent } from './survey-home-detail.method';
@@ -13,9 +13,7 @@ import { getUserAgent } from './survey-home-detail.method';
 type ISurveyHomeDetailModuleProps = {};
 
 export const SurveyHomeDetailModule: FC<ISurveyHomeDetailModuleProps> = () => {
-  const [visitorId, setVisitorId] = useState(0);
-  const [visitorSurveyResultId, setVisitorSurveyResultId] = useState(0);
-
+  const router = useRouter();
   const saveVisitorInfo = async () => {
     const userAgentResponse = await getUserAgent();
     const requestBody: IStartSurveyTypePostRequestData = {
@@ -24,32 +22,32 @@ export const SurveyHomeDetailModule: FC<ISurveyHomeDetailModuleProps> = () => {
       agentBrowser: userAgentResponse.browser,
       accessUrl: 'https://test',
     };
-    const response = await Api.post<IStartSurveyTypePostResponseData>(PathEnum.START, requestBody);
+    const response = await Api.post<IStartSurveyTypePostResponseData>(
+      `/start/${SURVEY_TYPE}`,
+      requestBody
+    );
 
-    setVisitorId(response.data.visitor_id);
-    setVisitorSurveyResultId(response.data.visitor_survey_result_id);
+    return response.data.visitor_survey_result_id;
   };
 
-  useEffect(() => {}, [visitorId, visitorSurveyResultId]);
-
-  const handleStartButtonClick = () => {
-    saveVisitorInfo();
+  const handleStartButtonClick = async () => {
+    const visitorSurveyResultId = await saveVisitorInfo();
+    router.push(
+      `${PathEnum.SURVEY}?visitor_survey_result_id=${visitorSurveyResultId}`,
+      PathEnum.SURVEY
+    );
   };
 
   return (
     <StyledSpace direction="vertical" align="center">
-      <Link href={{ query: { visitorId: visitorId }, pathname: PathEnum.SURVEY }}>
-        <a>
-          <HoverButton
-            type="text"
-            onClick={() => {
-              handleStartButtonClick();
-            }}
-          >
-            지금 바로 시작하기
-          </HoverButton>
-        </a>
-      </Link>
+      <HoverButton
+        type="text"
+        onClick={() => {
+          handleStartButtonClick();
+        }}
+      >
+        지금 바로 시작하기
+      </HoverButton>
       <HoverButtonSmall type="text" icon={<LinkOutlined />}>
         URL 복사하기
       </HoverButtonSmall>

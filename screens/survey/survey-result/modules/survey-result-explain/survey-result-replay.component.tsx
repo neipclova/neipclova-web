@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { FC } from 'react';
 import styled from 'styled-components';
 
-import PathEnum from 'utils/paths';
+import { PathEnum } from 'utils/paths';
 
 type ISurveyResultReplayComponentProp = {};
 

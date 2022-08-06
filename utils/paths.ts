@@ -1,11 +1,8 @@
-const SURVEY_TYPE = 'CLUB';
+export const SURVEY_TYPE = 'CLUB';
 
-const PathEnum = {
+export const PathEnum = {
   API_URL: 'http://localhost:8080', // api url
-  START: `/start/${SURVEY_TYPE}`,
-  SURVEY: `/survey/${SURVEY_TYPE}`,
+  SURVEY: '/survey',
   HOME: '/',
-  SURVEY_RESULT: `/result/${SURVEY_TYPE}`,
+  SURVEY_RESULT: '/survey/result',
 };
-
-export default PathEnum;

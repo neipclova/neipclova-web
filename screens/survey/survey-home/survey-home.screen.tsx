@@ -9,8 +9,6 @@ import {
   SurveyHomeTitleModule,
 } from './modules';
 
-type ISurveyHomeScreenProps = {};
-
 export const SurveyHomeScreen: FC<ISurveyHomeScreenProps> = () => {
   return (
     <SurveyHomeLayout>
