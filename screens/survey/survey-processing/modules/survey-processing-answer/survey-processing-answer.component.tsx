@@ -1,4 +1,5 @@
 import { Row, Space } from 'antd';
+import axios from 'axios';
 import { Dispatch, FC, SetStateAction } from 'react';
 import styled from 'styled-components';
 
@@ -8,6 +9,7 @@ type ISurveyProcessingAnswerComponentProp = {
   setType: Dispatch<SetStateAction<enum_visitor_type>>;
   setCurrentOrder: Dispatch<SetStateAction<number>>;
   options: IOptionData[];
+  visitorSurveyResultId: number;
 };
 const HoverSpace = styled(Space)`
   :hover {
@@ -19,12 +21,33 @@ const HoverSpace = styled(Space)`
 export const SurveyProcessingAnswerComponent: FC<ISurveyProcessingAnswerComponentProp> = ({
   setType,
   setCurrentOrder,
+  visitorSurveyResultId,
   options,
 }) => {
+  const saveUserAnswer = async (currentOrder: number, item: any) => {
+    const response = await axios.post('http://localhost:8080/answer', {
+      visitorSurveyResultId: visitorSurveyResultId,
+      questionId: currentOrder,
+      optionId: item.order,
+    });
+    console.log(response);
+
+    // // 테스트코드
+    // const response = {
+    //   visitor_id: visitorId,
+    //   question: currentOrder,
+    //   answer: item.order,
+    //   created_at: "yyyy-MM-dd HH:mm:ss"
+    // };
+    // console.log(response);
+    // // 테스트코드
+  };
+
   if (options.length === 0) {
     console.log('No option error');
   }
   const handleClickButton = (item: IOptionData) => {
+    saveUserAnswer(item.question.questionOrder, item);
     if (item.question.questionOrder === 1) {
       switch (item.optionOrder) {
         case 1: {

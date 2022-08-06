@@ -1,4 +1,5 @@
 import { Space } from 'antd';
+import axios from 'axios';
 import { useRouter } from 'next/router';
 import { FC, useEffect, useState } from 'react';
 
@@ -20,6 +21,8 @@ type ISurveyProcessingScreenProps = {
 export const SurveyProcessingScreen: FC<ISurveyProcessingScreenProps> = ({ surveyData }) => {
   const router = useRouter();
   const [currentOrder, setCurrentOrder] = useState(1);
+  const visitorSurveyResultId = Number(router.query.visitorSurveyResultId);
+
   const [type, setType] = useState<enum_visitor_type>(enum_visitor_type.STUDENT);
   const [question, setQuestion] = useState<string>(
     surveyData.questions.find((question) => question.questionOrder === currentOrder)?.question[
@@ -42,6 +45,13 @@ export const SurveyProcessingScreen: FC<ISurveyProcessingScreenProps> = ({ surve
       surveyData.options.filter((option) => option.question.questionOrder === currentOrder)
     );
     if (!currentOrder) {
+      console.log('result');
+
+      // result api가 여기서 호출되어야 하나..?
+      const response = axios.post<any, { visitorId: number }>('http://localhost:8080/result/CLUB', {
+        visitorSurveyResultId: visitorSurveyResultId,
+      });
+      console.log(response); // response : { result: string(enum)}
       router.push(PathEnum.SURVEY_RESULT);
     }
   }, [currentOrder, type]);
@@ -62,6 +72,7 @@ export const SurveyProcessingScreen: FC<ISurveyProcessingScreenProps> = ({ surve
           <SurveyProcessingAnswerComponent
             setType={setType}
             setCurrentOrder={setCurrentOrder}
+            visitorSurveyResultId={visitorSurveyResultId}
             options={options}
           />
         </Space>
