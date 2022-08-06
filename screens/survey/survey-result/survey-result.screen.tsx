@@ -1,4 +1,5 @@
 import { Space } from 'antd';
+import { useRouter } from 'next/router';
 import { FC, useEffect } from 'react';
 import styled from 'styled-components';
 
@@ -13,11 +14,11 @@ import {
   SurveyResultTitleComponent,
 } from './modules';
 
-type ISurveyResultScreenProps = {
-  result: string;
-};
+type ISurveyResultScreenProps = {};
 
-export const SurveyResultScreen: FC<ISurveyResultScreenProps> = ({ result }) => {
+export const SurveyResultScreen: FC<ISurveyResultScreenProps> = () => {
+  const router = useRouter();
+  const { result } = router.query;
   // TODO: remove this
   // Api.get(`${PathEnum.API_URL}/survey`).then((response) => {
   //   console.log(response);
@@ -30,7 +31,7 @@ export const SurveyResultScreen: FC<ISurveyResultScreenProps> = ({ result }) => 
     <SurveyResultLayout>
       {/* <Div> */}
       <StyledSpace direction="vertical" align="center">
-        <SurveyResultTitleComponent />
+        <SurveyResultTitleComponent result={String(result)} />
         <SurveyResultSeeallResultComponent />
         <SurveyResultReplayComponent />
         <SurveyResultShareComponent />

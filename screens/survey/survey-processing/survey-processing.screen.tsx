@@ -1,9 +1,6 @@
 import { Space } from 'antd';
-import axios from 'axios';
 import { useRouter } from 'next/router';
 import { FC, useEffect, useState } from 'react';
-
-import PathEnum from 'utils/paths';
 
 import {
   enum_visitor_type,
@@ -21,8 +18,9 @@ type ISurveyProcessingScreenProps = {
 export const SurveyProcessingScreen: FC<ISurveyProcessingScreenProps> = ({ surveyData }) => {
   const router = useRouter();
   const [currentOrder, setCurrentOrder] = useState(1);
-  const visitorSurveyResultId = Number(router.query.visitorSurveyResultId);
+  const query = router.query;
 
+  const { visitor_survey_result_id: visitorSurveyResultId } = router.query;
   const [type, setType] = useState<enum_visitor_type>(enum_visitor_type.STUDENT);
   const [question, setQuestion] = useState<string>(
     surveyData.questions.find((question) => question.questionOrder === currentOrder)?.question[
@@ -32,28 +30,16 @@ export const SurveyProcessingScreen: FC<ISurveyProcessingScreenProps> = ({ surve
   const [options, setOptions] = useState<IOptionData[]>(
     surveyData.options.filter((option) => option.question.questionOrder === currentOrder)
   );
+
   useEffect(() => {
     setQuestion(
       surveyData.questions.find((question) => question.questionOrder === currentOrder)?.question[
         type
       ] ?? ''
     );
-    console.log(
-      surveyData.options.filter((option) => option.question.questionOrder === currentOrder)
-    );
     setOptions(
       surveyData.options.filter((option) => option.question.questionOrder === currentOrder)
     );
-    if (!currentOrder) {
-      console.log('result');
-
-      // result api가 여기서 호출되어야 하나..?
-      const response = axios.post<any, { visitorId: number }>('http://localhost:8080/result/CLUB', {
-        visitorSurveyResultId: visitorSurveyResultId,
-      });
-      console.log(response); // response : { result: string(enum)}
-      router.push(PathEnum.SURVEY_RESULT);
-    }
   }, [currentOrder, type]);
 
   return (
@@ -72,7 +58,7 @@ export const SurveyProcessingScreen: FC<ISurveyProcessingScreenProps> = ({ surve
           <SurveyProcessingAnswerComponent
             setType={setType}
             setCurrentOrder={setCurrentOrder}
-            visitorSurveyResultId={visitorSurveyResultId}
+            visitorSurveyResultId={Number(visitorSurveyResultId)}
             options={options}
           />
         </Space>

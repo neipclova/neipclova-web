@@ -4,13 +4,13 @@ import Link from 'next/link';
 import { FC } from 'react';
 import styled from 'styled-components';
 
-import PathEnum from 'utils/paths';
+import { PathEnum } from 'utils/paths';
 
 type ISurveyResultReplayComponentProp = {};
 
 export const SurveyResultReplayComponent: FC<ISurveyResultReplayComponentProp> = () => {
   return (
-    <Link href={PathEnum.HOME}>
+    <Link href={{ pathname: PathEnum.HOME }}>
       <a>
         <HoverButton type="text" icon={<ReloadOutlined />}>
           테스트 다시하기

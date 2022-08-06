@@ -2,6 +2,7 @@ import Head from 'next/head';
 import { FC } from 'react';
 
 import { ISurveyData } from 'components';
+import { SURVEY_TYPE } from 'utils/paths';
 import Api from 'utils/util';
 
 import { SurveyProcessingScreen } from '../../screens';
@@ -25,7 +26,7 @@ export default SurveyProcessingPage;
 
 export async function getStaticProps() {
   try {
-    const response = await Api.get<ISurveyData>('survey/CLUB');
+    const response = await Api.get<ISurveyData>(`/survey/${SURVEY_TYPE}`);
     const surveyData = response.data;
     return {
       props: {
